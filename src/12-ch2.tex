@@ -1,0 +1,565 @@
+\chapter{Xanadu: Vize a skutečnost}
+
+% \epigraph{
+% V Xanadu Kublajchán si dal\\
+% postavit palác vznešený:\\
+% posvátný Alph tam protékal\\
+% labyrint skrytý v nitru skal\\
+% \hspace{1em} do moře věčné tmy.\\
+% Úrodné půdy deset mílí\\
+% hradby a věže obklopily:\\
+% potůčky vinuly se v zahradách,\\
+% v nichž kadidlový strom kvet omamně,\\
+% a les jak kopce starý se tam táh,\\
+% stín kolem teček slunné zeleně.
+% }{Kublajchán \textit{aneb} Vidění ve snu\\
+% Samuel Taylor Coleridge\footnote{Přeložil Zdeněk Hron\nocite{Coleridge}}}
+
+% Later, imple-mentations of such systems, for example, Storyspace, embodied this
+% suggestion so fully that readers could follow o_ryl_y_ the sequences laid '-·
+% down by the writer. Hyperfictions written in S"toryspace, like After-noon, do not allow its readers free browsing, unlike any codex fic-tion in existence. The reader's freedom from linear sequence, which
+% is often held up as the political and cognitive strength of hypertext,
+% is a promise easily retracted and wholly dependent on the hypertext '
+% system in question. [77]{Aarseth1997}
+% Jak podotýká \textcite[77]{Aarseth1997}, hyperfikce v systémech jako je Storyspace popírá jednu odebírá čtenáři volnost procházet text libovolným způsobem
+
+Nelson vymyslel koncept Xanadu v šedesátých letech 20. století a od té doby svojí vizi dále rozvíjí. Představoval si Xanadu jako komerční instituci a globální systém pro hypertextovou literaturu. Na základě jeho vize vznikla řada prototypů a funkčních aplikací, které demonstrují pouze střípky Nelsonova plánu, ne však systém Xanadu jako celek. Tato kapitola proto popisuje Xanadu ve dvou rovinách. Nejprve jako evoluci vize hypertextu a Xanadu skrze Nelsonovy texty, tj. „co mělo být.“ Následuje analýza aplikací a prototypů, které se snaží tuto vizi implementovat, tj. „co doopravdy vzniklo.“ Ve třetí části kapitoly jsou shrnuty jednotlivé cíle systému Xanadu, které slouží jako východisko pro následující kapitolu.
+
+\section{Evoluce vize Xanadu}
+
+Nelson rád vzpomíná na určitý moment, když mu bylo kolem pěti let. Plavil se na loďce se svým dědečkem a nořil ruce do vody. Při tom sledoval různá „místa“ ve vodě, jak protékají mezi jeho prsty -- „místa“ se rozdělila a potom spojovala pokaždé jinak \autocites{Herzog2016}[66]{Barnet2014}. Nekonečné množství spojení a komplexit Nelsona fascinovalo a od té doby začal uvažovat o fundamentálních vazbách, spojeních, která formují naše životy a myšlenky -- a jak s těmito vazbami pracovat a neztratit je \autocite[66]{Barnet2014}.
+
+Nelson celý život zápasí s organizací všech nápadů, myšlenek a materiálů. Zkoušel různé papírové organizační systémy, kartičky, či Filofax, ale žádný z nich neřešil fundamentální problém: jeden nápad může být na více místech. V roce 1960 se Nelson zapsal na počítačový kurz na Harvardu a spatřil alternativu. Podobně jako Engelbart viděl v počítači univerzální nástroj pro práci s informacemi, který by mohl vyřešit jeho problém s organizací myšlenek. Především problém duplikace informací. Protože každý nápad staví na dřívějších myšlenkách a jedna myšlenka může být součásti více dokumentů. Počítač umožňuje nápady mezi sebou propojovat a odkazovat se na ně z více míst, takže každá myšlenka je uložená právě jednou. Tento koncept, později pojmenovaný „transkluze“ je významnou součástí systému Xanadu \autocite[70]{Barnet2014}.
+
+\label{p:evol:harvard}
+Nelson chtěl jako semestrální projekt vytvořit systém pro práci s textem na mainframu IBM~7090, toho času jediném počítači na Harvardu. Systém měl umožnit vytváření dokumentů na obrazovce, jejich ukládání, editaci a tisk. Oproti jiným textovým editorům (které v té době ještě neexistovaly) však měl umožnit i revizi všech předchozích a alternativních verzí dokumentu, jejich porovnávání a případně obnovení smazaných částí \autocite[71]{Barnet2014}. Nelsonovou prioritou bylo „usnadnit porovnávání alternativních možností“ \autocite[1/25]{LitMachines} -- dvě verze textů by byly zobrazené vedle sebe tak, aby je uživatel mohl zblízka porovnat mezi sebou. I tento koncept je charakteristický pro většinu návrhů Xanadu, později býval označovaný jako \enterm{Parallel Textface} či \enterm{Trainspointing Windows} (\pnoref[více viz]{p:dm:paraviz}). Nelson však semestrální projekt nedokončil, po napsání přibližně čtyřiceti tisíc řádek strojového kódu si uvědomil, že pravděpodobně podcenil obtížnost problému \autocite[14]{Rheingold1985}. Později ke svému projektu na Harvardu dodal: \textquote[{\autocite[1/26]{LitMachines}}][.]{Přišlo mi to tehdy tak jednoduché a jasné. Stále mi to tak přijde. Ale stejně jako většina začínajících programátorů jsem si spletl jasný plán s krátkou vzdáleností}
+
+Na začátku šedesátých let se na Harvardu také diskutovalo o podpoře výuky počítačem (\enterm{Computer-aided instruction}, CAI). To Nelsona přivedlo k myšlence výukového programu, kde by uživatel mohl zkoumat různá témata a teorie tak, že by procházel síť informací -- „program tisíce teorií.“ Tento koncept pojmenoval jako „hypertext“ \autocites[71]{Barnet2014}[1/26]{LitMachines}. Myšlenky hypertextu pro výuku s počítačem Nelson rozvedl později v článku \enterm{No More Teacher's Dirty Looks} (\pnoref{p:dm:dirtylooks}).
+
+\subsection{ELF a hypertext}
+\label{sec:elf}
+
+%Nelsonovým nejstarším publikovaným článkem je _File structure for the complex, the changing and the indeterminate_ [-@Nelson1965]. Zde popisuje datovou strukturu nazvanou „zippered list“ a z ní odvozený formát souborů „Evolutionary List File“ (ELF). Fakticky se jedná o záznamy (entries) uspořádané do seznamů (lists), přičemž záznamy jsou mezi sebou provázané odkazy (links). Z této struktury pak odvozuje obecný systém pro správu informací, včetně hypertextu. Hypertext je zde definovaný jako „psaný nebo obrázkový materiál, který je propojený tak komplexním způsobem, že není prakticky prezentovatelný ani reprezentovatelný na papíře“ [@Nelson1965, str. 96].[^cybertext] Tento článek představuje základní východiska Nelsonova cíle vytvořit nehierarchický systém který dokáže obsáhnout nelinearitu a komplexitu lidského myšlení ve kterém žádná myšlenka ani revize nezůstane ztracená. O rok později pojmenoval tento systém Xanadu [@Barnet2014, str. 76].
+
+V roce 1965 Nelson publikoval příspěvek \citetitle{Nelson1965}, kde představuje formát \enterm{Evolutionary List File} (ELF) složený z datových struktur „zipových seznamů“ (\enterm{zippered lists}) \autocite[89]{Nelson1965}. Každý seznam se skládá ze záznamů obsahujících libovolnou diskrétní informaci (např. text nebo obrázek), a odkazů. Odkaz vede od záznamu v jednom seznamu k záznamu v seznamu jiném. Mají-li mezi sebou dva seznamy odkazy, mohou do sebe zapadat jako „zip“ \autocite[90]{Nelson1965} -- záznamy z jednoho seznamu proloží záznam druhý. Taková datová struktura umožňuje porovnávání dokumentů mezi sebou: „záznam představuje důležitý nadpis v jednom dokumentu a okrajovou poznámku ve druhém a všechny záznamy mohou být psané a čtené nelineárně“ \autocite[72]{Barnet2014}. Když odkazy propojí jednotlivé verze dokumentů, autoři uvidí jakým způsobem se rozvíjela určitá myšlenka \autocite[72]{Barnet2014}.
+Pokud záznamy obsahují kusy kódu, propojením s anotacemi může programátor pracovat paralelně na několika verzích a v jiném seznamu kód dokumentovat \autocite[93--94]{Nelson1965}. Jak zdůrazňuje \textcite[72]{Barnet2014}, důležitou vlastností tohoto návrhu bylo, že měl používat počítač k ukládání a zobrazování prakticky neomezeného množství informací -- nic podobného papír snadno neumožňuje. Nelson zpětně hodnotí ELF jako velice špatný návrh,
+který nicméně umožňoval porovnávat dokumenty mezi sebou, včetně historických revizí, a opětovně používat jejich části \autocites[151]{Possiplex}[72]{Barnet2014}. Oba tyto koncepty tvoří součást Xanadu. Návrh zipových seznamů byl později zobecněný jako \enterm{collateral structures} \autocite[DM52]{Nelson1974} a navazuje na něj systém ZigZag (\cite[72]{Barnet2014}; \pnoref[popis na]{sec:zigzag}).
+
+Ve stejném článku Nelson představuje pojem hypertext, který popisuje jako „korpus psaného nebo obrazového materiálu který je tak komplexně propojený, že jej není možné prezentovat nebo reprezentovat na papíře“ \autocite[96]{Nelson1965}. Nelson zdůrazňuje, že i zvukové a audiovizuální nahrávky, které jsou lineární jako text, mohou být reprezentované nelineární formou, lze si proto představit „hyperfilm“ jako jeden příklad hypermédií. Hypertext zároveň řeší svázanost hierarchické kategorizace informací. Nelson zdůrazňuje, že informační systémy musí být natolik flexibilní, aby pojaly nové formy kategorizace -- obory bádání se neustále vyvíjejí a propojují mezi sebou, proto neexistuje jedna „ideální“ či „permanentní“ hierarchie informací \autocite[97]{Nelson1965}. Podobný problém zmiňuje Vannevar Bush, který hierarchické systémy považuje za nepřirozené (\pnoref{sec:memex}).
+
+\subsection{Hypermédia a film}
+% Getting It Out
+
+V článku \citetitle*{Nelson1967} dále rozvíjí koncept hypertextu jako média (nikoliv „příslušenství“) pro nelineární text, které v sobě kombinuje vlastnosti filmu a knih \autocite[191,195-196]{Nelson1967}. Právě evoluci filmového média prezentuje jako analogii možného rozvoje hypertextu. Na počátku se filmy tvořily podle pravidel divadelní tvorby: film se skládal z dlouhých, statických scén. Začátkem dvacátého století však režisér D.~W. Griffith ve svých filmech začal aktivně pracovat s kamerou a výpravou skrze krátké střihy, čímž položil základy moderní filmové tvorby \autocite[203]{Nelson1967}. Stejně tak i počítač je médium se skrytým potenciálem, nabízející nové možnosti pro práci s informacemi, které nejsou na první pohled patrné. Je proto přirozené přebírat techniky starého média, tj. papírových dokumentů. Hypertext je pak další krok naplňující potenciál nového média pro práci s informacemi.
+
+% \begin{quote}
+% The conventional “document” is not God-given, and in fact is inappropriate for most purposes. Systems based on discrete and isolated documents relinquish the greatest power of the new technology.
+% Konvenční „dokument“ není daný Bohem a ve skutečnosti je pro většinu účelů nevhodný. Systémy postavené na diskrétních a izolovaných dokumentech se vzdávají největší síly nové technologie. [...]
+
+% The problem of Getting It Out of Our System, then, is not the problem
+% of fishhook design for a document pool, or of creating a conversational black box with a narrow vocabulary. We must get out of our system the fixities of thinking and procedure that hold us back.
+
+% Problém jak „to dostat z našeho systému“ není problémem [...] návrhu úložiště dokumentů\footnote{Nelson zde používá nepřeložitelnou hříčku: \enterm{fishhook design for a document pool}.}
+% nebo vytvoření konverzační černé skříňky s omezeným slovníkem. Musíme z našeho systému dostat zatvrzelost našeho myšlení a procedur které nás drží zpět.
+% \sourceatright{\autocite[208--209]{Nelson1967}}
+% \end{quote}
+
+Nelsonova inspirace filmem je patrná i v pozdější tvorbě, kde aplikuje koncepty systémů pro nelineární střih pro práci s dokumenty (\pnoref{p:xana:edl}).
+\Textcite[209]{Glut} přirovnává Nelsona k Hitchcockovi. Tento režisér věděl velice málo o technických podrobnostech výroby filmů, svým stylem však zásadně ovlivnil rozvoj kinematografie.
+Obdobně i Nelson ovlivnil vývoj celého IT odvětví, aniž by počítače sám programoval. \Textcite{Markoff2007} zmiňuje Nelsonovu prezentaci pro IBM, kterou údajně přesvědčil představitele firmy, aby vstoupili na trh osobních počítačů.
+
+\subsection{Počátky Xanadu a \eng{Hypertext Implementation Notes}}
+
+V roce 1966 Nelson pojmenoval svůj hypertextový projekt \emph{Xanadu}, inspirován nedokončenou básní Samuela Taylora Coleridge \citetitle{Coleridge} \autocite[76]{Barnet2014}. Xanadu Nelsonovi přišlo jako \textquote[{\autocite[1/30]{LitMachines}}]{perfektní jméno pro \emph{magické místo literární paměti}}. \Textcite[76]{Barnet2014} zmiňuje, že Kublajchán je nejslavnější nedokončená báseň romantismu -- existuje jako obraz potenciálu, který nebyl nikdy naplněn.\footnote{Jako další zdroj Nelsonovy inspirace bývá uváděn film \emph{Občan Kane}: „Xanadu“ se jmenuje nedokončené panství hlavní postavy \autocite[209]{Glut}.} Jak Coleridgovo, tak Nelsonovo Xanadu je stále zdrojem inspirace pro nová díla. Jak ale komentuje Nelson: \textquote[{\autocite[76]{Barnet2014}}]{Všichni se Xanadu pouze inspirují, nikdo nerealizuje přímo můj/náš návrh!}
+
+To byl i případ Andyho van~Dama, který s Nelsonem pracoval na systému HES, ale jeho záměrem nebylo implementovat Xanadu v celé šíři (\pnoref{sec:hes}). Nelson v roce 1968 vytvořil ručně psaný dokument \citetitle{hin68} pro van~Damův tým, kde popisuje ELF, Xanadu, vizualizaci pomocí grafů a několik forem hypertextu. Grafová vizualizace hraje centrální roli v práci s hypertextem -- může sloužit k zobrazení vazeb mezi hypertextovými dokumenty a jejich částmi, ke sledování historie dokumentu a jeho alternativních verzí, případně k zobrazení různých uživatelských aktivit \autocite[4]{hin68}. Popis Xanadu evokuje koncepci grafických okenních rozhraní: data jsou zobrazena v „oknech“ variabilní velikosti. Okna tvoří grafovou strukturu: mohou to být vazby mezi diskrétním hypertextem nebo propojené aktivity uživatele na jeho „pracovní ploše“ \autocite[6--7]{hin68}. Dále dokument popisuje souborový formát \enterm{Poignant}, který by mohl sloužit k implementaci hypertextových dokumentů. Formát by umožňoval existenci více možných cest stejnými dokumenty (podobně jako asociativní cesty v Memexu) a zároveň by měl řešit „diplomatické vztahy mezi dokumenty,“ zejména aby změny v odkazovaném dokumentu nepoškodily odkazující soubory \autocite[8--9]{hin68} -- tzn. odkazy musí být obousměrné.
+
+Nelson v dokumentu představuje následující formy hypertextu:
+
+\label{p:ht:forms}
+\begin{description}
+  \item[Jednoduchý nespojitý hypertext] propojuje kousky (\enterm{chunks}) textů. Uživatel může „skákat“ mezi samostatnými kousky textů, případně se posouvat kontinuálním textem \autocite[10--11]{hin68}.
+  Jedná se o jedinou formu, kterou implementoval systém HES. \Textcite[7]{Barnet2014} podotýká, že se také jedná o dominantní formu hypertextu implementovanou i ve většině dalších systémů, včetně Webu.
+
+  \item[Repetitivní nespojitý hypertext] je rozšířením jednoduché formy s možností odkazovat na „molekuly“ kousků textu \autocite[12--13]{hin68}. To nejspíše znamená, že kousky mohou být sdružené do větších struktur, na které je možné se odkazovat jako na celek. Zároveň však jednotlivé kousky mají stále možnost odkazovat mimo svou molekulu.
+  Obdobu tohoto konceptu představuje Storyspace, kde je  možné jednotlivé buňky zanořovat do sebe a odkazovat na jejich celky (\pnoref{p:storyspace:cell}), případně kolekce v Hyper-G (\pnoref{p:hyperg:collection}).
+
+  \item[Jednorozměrný spojitý hypertext] či \enterm{Stretchtext} umožňuje „natáhnout“ text do větších podrobností. To si lze představit jako přibližování nebo oddalování textu do větších či menších úrovní detailu.
+  Nelson popisuje navigaci spojitým hypertextem jako let dvourozměrným prostorem: uživatel může ovládat svou pozici a „výšku“ v textu (ideálně pomocí dvou pák) \autocite[14--18]{hin68}.
+  \Textcite[55--56]{Nielsen1995} si všímá podobnosti Stretchtextu s funkcí nahrazovacích tlačítek v systému Guide, která „rozbalí“ krátký text pro větší podrobnosti a slouží například k navigaci mezi kapitolami.
+  Nelsonův původní popis se však zaměřuje zejména na kontinuální, plynulý pohyb různými úrovněmi Stretchtextu.
+
+  \item[Vícerozměrný Stretchtext] rozšiřuje Stretchtext o více rozměrů, které lze chápat i jako atributy \autocite[19]{hin68}. Jinými slovy, text lze „roztahovat“ ve více „směrech.“ % TODO příklad?
+  Nelson nenabízí u tohoto typu hypertextu příklad. Lze si však představit, že by si uživatel mohl nastavit třeba vyznění textu, jeho formálnost, odbornost, či popisnost. Případně by uživatel mohl zvyšovat podrobnost textu ve směru různých témat. Nelson se však nezabývá otázkou jak takový text vytvořit.
+
+  \label{p:ht:proust}
+  \item[Proustovská editace textu] je aplikací jednorozměrného Stretchtextu do rozměru času. Nelson zde rozvíjí svůj původní záměr semestrálního projektu na Harvardu a jeden z cílů systému ELF (\pnoref{sec:elf}): Přístupnost všech historických a alternativních verzí dokumentu. Jednotlivé revize je možné ukládat jako sérii změn. Uživatel se může vrátit k předchozí verzi dokumentu a založit alternativní větev, příčemž větve stejného dokumentu se mohou vzájemně odkazovat, uživatel je může anotovat nebo popisovat souvislosti mezi jednotlivými verzemi \autocite[20--21]{hin68}.
+  Tento koncept evokuje systémy pro správu verzí, například současný Git, který ukládá revize ve formě změn mezi jednotlivými verzemi a revize lze vytvářet v paralelních větvích \autocite{Git}.
+\end{description}
+
+V závěru dokumentu se Nelson zamýšlí nad problematikou „hyper-rukopisů,“ nedokončených hypertextových dokumentů které se stále vyvíjí. To přináší dříve zmíněný problém udržování funkčnosti odkazů. Pro Nelsona z toho vyplývá, že příchozí odkaz bude fixovat dokument v určité verzi \autocite[23--24]{hin68}.
+To je zajímavý kontrast oproti návrhu Webu, který apeluje na dostupnost „živých dokumentů“ bez ohledu na jejich historii a alternativní verze (\pnoref{p:web:live}).
+
+\subsection{Setkání s Engelbartem}
+\label{sec:xanadu:engelbart}
+% kontrast s Engelbartem
+
+V prosinci roku 1968 Engelbart demonstroval interaktivní práci s textem na počítači (\pnoref{sec:nls}). Nelson sám se s Engelbartem potkal o rok dříve a zvažoval, že by se do vývoje NLS zapojil. Jak Engelbart tak Nelson se inspirovali Bushovou vizí Memexu a sledovali stejný záměr, tj. rozšíření lidských intelektuálních schopností skrze počítač (\textcite{Nelson1974} v knize \enterm{Dream Machines} pro takový nástroj používá označení \enterm{thinkertoy}). Nelsonovi však na NLS nevyhovovalo hierarchické paradigma a omezení délky jednotlivých záznamů. Z Engelbartova systému však převzal ovládání myší a uznává mu prvenství konceptu textového odkazu\footnote{Nelsonovy rané návrhy i HES prezentují odkazy jako značky v textu podobně jako poznámky pod čarou. Textové odkazy, kde úsek textu slouží jako odkaz, byly popularizované zejména Webem.} \autocite[78--79]{Barnet2014}.
+
+Oba systémy se liší ještě v jednom podstatném směru. Xanadu navazuje na Memex jako nástroj určený zejména pro individuální práci jednotlivce, zatímco NLS měl podpořit spolupráci skupiny. Nelson to popisuje následovně:
+
+\begin{quoted}{\autocite[Rozhovor s Nelsonem podle][43]{Barnet2014}}
+Rozdíl mezi mnou a Dougem Engelbartem je ten, že on vidí svět v harmonii, zatím co já jej vidím v neshodě. Mé systémy byly navržené s předpokladem, že se budeme potýkat s neshodou na všech úrovních.
+\end{quoted}
+
+%  Engelbart was more concerned with constructing the toolkit and workshop for solving problems than speculating about the kind of literary form such a facility might create. Nelson, however, being a liberal arts type rather than an engineering type -- a dichotomy he deplores, since it kept him away from computers for so long -- wondered what art forms and intellectual systems might emerge. In its simplest essence, a link is a reminder that "there is something to jump to here." Links meant that literature no longer had to be sequential.
+Jak NLS, tak Xanadu do jisté míry zrcadlí povahu svých tvůrců.
+V čem má naopak Engelbart blíže k Bushovi, je především technický pohled. Jak si všímá \textcite[14]{Rheingold1985}, Engelbart viděl počítač především jako nástroj k řešení praktických problémů. Nelson se svým humanitním vzděláním naopak uvažoval nad širším kulturním dopadem počítačů a hypertextu -- novými formami umění včetně literatury.
+
+\subsection{Rané technické návrhy}
+
+\label{p:evol:streams}
+Po neúspěchu na Brownově univerzitě se Nelson vydal po vlastní ose a věnoval se zejména technickým aspektům návrhu Xanadu, organizaci dat v paměti a na disku \autocite[1/32]{LitMachines}. V roce 1971 sepsal technický popis Xanadu postavený na datových a řídících proudech (\enterm{streams}) a kruhových zásobnících (\enterm{circular buffers}). Nelson systém popisuje dvojitou metaforou, postavenou na dvou významech slova \enterm{bed}: řečiště a lůžko. Datové proudy se pohybují „řečištěm“, což nazývá jako „klokotání“ (\enterm{babbling}). Proudy se skládají ze samostatně uložených sekcí, „zátočin“ (\enterm{meanders}) \autocite[8]{xtdd2}. Nelson zdůrazňuje význam oddělení čistých dat od řídících sekvencí (například formátování); ty jsou uložené v samotných řídících proudech (\enterm{control streams}), které se mohou odkazovat do různých datových proudů \autocite[9]{xtdd2}. Tento přístup je patrný i v pozdějších iteracích Xanadu.
+Řečiště slouží k organizaci dat v paměti do fixních bloků, které obsahují kontrolní sekvenci -- „polštář“ (\enterm{pillow}). Ten obsahuje informace o příslušném řečišti a ukazatele na zátočiny uložené na disku. Nelson tak svérázným způsobem popisuje způsob organizace dat v externí paměti, tj. souborový systém.
+
+Nelson popisuje Xanadu jako ucelený operační systém, který by mohl využívat stejné principy hypertextu i pro programování vlastních funkcionalit \autocite[38]{xtdd2}. Nelsonova snaha o vytvoření „unifikované teorie“ pro software je patrná i o třicet let později v návrhu ZigZag (\pnoref{sec:zigzag}).
+V šedesátých a sedmdesátých letech však Nelson neměl jinou možnost. Robustní operační systémy a programovací jazyky, které poskytují všechny potřebné abstrakce pro správu dat a práci s grafikou neexistovaly nebo teprve vznikaly. 
+Nelson požadoval po systému řadu funkcí, jenž konvenční řádkové terminály nemohly splnit, například podporu plynulých animací \autocite[34]{xtdd2}. Jako určitý mezikrok navrhl v roce 1972 interaktivní editor \enterm{Juggler of Text} (\pnoref[popsaný na]{sec:impl:jot}).
+
+% As We Will Think
+Ve stejném roce Nelson prezentuje svou vizi na konferenci \enterm{Online} v příspěvku \citetitle{Nelson1972a} -- název zcela záměrně evokuje Bushův článek \citetitle{Bush1945}. Nelson porovnává Xanadu s vizí Memexu a hypertext jako realizaci asociativních cest.
+Nelson popisuje dřívější koncept porovnávání alternativních možností jako \enterm{Parallel Textface}, tj. zobrazení vazeb mezi dvěma paralelními texty \autocite[The Console]{Nelson1972a}. Zde je i patrná inspirace Memexem: ten měl obsahovat více obrazovek, na kterých si uživatel může paralelně vyvolat dvě různé stránky a vytvořit mezi nimi vazbu. Nelson tento návrh posouvá dále, vazby mezi konkrétními fragmenty dokumentů mají být viditelné.
+Paralelní zobrazení zároveň konkretizuje původní záměr systému ELF a Nelson jej podrobněji rozebírá v \enterm{Dream Machines} (\pnoref{p:dm:paraviz}). 
+Nelson v příspěvku popisuje i „přenosovou síť“ a obchodní model Xanadu. Počítače (nebo terminály) budou připojené do sítě, skrze kterou si uživatel může objednat a zaplatit dokumenty \autocite[The Transmission Network]{Nelson1972a}. Nelson později rozvinul systém autorských práv v hypertextových dokumentech jako \enterm{transcopyright} (\pnoref{sec:transcopyright}).
+
+\subsection{Enfilády}
+
+% 71-72 Enfilade Model T
+Začátek sedmdesátých let byl pro projekt Xanadu významný i kvůli „objevu“ datových struktur pojmenovaných „enfilády“ (\enterm{enfilade}), které slouží k adresaci dat a manipulaci s nimi. Enfilády byly obchodním tajemstvím do roku 1999, kdy byl zveřejněný kód dvou významných implementací Xanadu pod názvy Udanax Green a Udanax Gold (\pnoref{sec:impl:green} a dále).
+Ačkoli se jedná o specializaci běžně známých a používaných datových struktur, které byly publikované nezávisle na projektu Xanadu, řada jejich „skrytých, obecných vlastností, objevených skupinou Xanadu“ publikována nebyla \autocite{xutech}.
+
+Enfilády jsou stromová datová struktura podobná B-stromům\footnote{B-strom je stromová struktura, která umožňuje uložit více prvků v jednom uzlu a zároveň všechny koncové uzly (listy) se nachází ve stejné hloubce \autocite{wiki:B-Tree}.},
+která pracuje s uzly nazvanými „DSPs“ (zkratka pro \enterm{displacements}) „WIDs“ (zkratka pro \enterm{widths}) \autocite{SunlessSea2005}. První typ enfilády nazvaný \enterm{Model~T} byl navržen pro editor JOT pro efektivní manipulaci s textem. Jednotlivé řetězce textu jsou uložené v koncových uzlech stromu, takže manipulaci lze provádět pouze úpravou ukazatelů v příslušné větvi stromu. Vnitřní stromy obsahují WID odpovídající součtu délky řetězců v daném podstromu, což umožňuje nalezení textu na určité pozici v logaritmickém čase. Jedná se o obdobu datové struktury „lano“ (\enterm{rope}), která používá binární strom \autocite{wiki:Enfilade}.
+
+\label{p:enf:gen}
+V roce 1979 Stuart Greene a Mark Miller vytvořili \emph{Obecnou teorii enfilád}, která zobecňuje WID na \enterm{WIDativity} -- vlastnost, která se propaguje od uzlů ke kořeni stromu a \enterm{DSP} na \enterm{DSPativity} -- vlastnost, která se propaguje od kořene ke koncovým uzlům. Nové typy enfilád odvozené z této teorie byly použité v implementaci Udanax Green \autocite{xutech}.
+
+\label{p:enf:ent}
+K. Eric Drexler v osmdesátých letech navrhnul datovou strukturu \enterm{Ent} pojmenovanou podle chodících stromů z trilogie Pán prstenů. Jedná se o „enfiládickou strukturu se zabudovaným verzováním“ \autocite{Nelson1999b} použitou v implementaci Udanax Gold (\pnoref{sec:impl:gold}). Její popis lze nalézt v archivu stránek \textcite{SunlessSea:Ent}.
+
+\subsection{Computer Lib / Dream Machines}
+
+%které \textcite[24]{Rheingold1985} označil jako „nejprodávanější manifest undergroundu mikropočítačové revoluce.“
+V roce 1974 vydal Nelson vlastním nákladem stěžejní dílo \citetitle*{Nelson1974}, vazbu dvou knih, které jsou k sobě svázané naruby. \Textcite[212]{Wright2007} popisuje svazek jako „nadrozměrný manifest se třemi sloupci strojopisu proloženého stovkami Nelsonových hyperkinetických skečů, s kvalitou ručně vyrobeného, mimeografického díla.“
+
+Kniha \enterm{Computer Lib} s podtitulem „Můžete a musíte rozumět počítačům PRÁVĚ TEĎ“ podrobně popisuje vlastnosti počítačů, hardware, software a programovací jazyky. Pod heslem „MOC POČÍTAČŮ PATŘÍ LIDEM! PRYČ S KYBERPAKÁŽÍ!“ zde Nelson vyhlašuje válku „kyberpakáži“ (\enterm{cybercrud}), jak označuje velké korporace (zejména IBM), které ovládaly počítačový trh a činily počítače nedostupné pro běžné smrtelníky \autocite[261]{Markoff2005}. \enterm{Computer Lib} se stal „manifestem revoluce osobních počítačů“ \autocite[1]{Rheingold1985} a „první knihou o osobních počítačích“ \autocite[301]{Wardrip-Fruin2003}. Jeden z prvních cenově dostupných mikropočítačů Altair~8800 se začal prodávat necelý rok po vydání Nelsonovy knihy.
+
+Druhá kniha \enterm{Dream Machines} „si získala příznivce téměř kultovního charakteru, díky své radikálně odlišné vizi práce s počítačem, pobuřujícímu a provokativnímu stylu prezentace a nekajícným zesměšňováním institucionálního přístupu k počítačům“ \autocite[211]{Wright2007}. Nelson zde popisuje svou mediální teorii, představuje nejnovější objevy na poli počítačů a počítačové grafiky a líčí svou vlastní vizi počítačového světa, hypertextu a Xanadu.
+
+\label{p:dm:dirtylooks}
+V přetisku článku z roku 1970 \enterm{No More Teacher's Dirty Looks} Nelson kritizuje trendy kolem CAI které tím, že se snaží napodobit konvenční přístupy k výuce, umocní nejhorší vlastnosti institucionálního vzdělávání \autocite[DM16--DM18]{Nelson1974}. Jako alternativu nabízí právě hypertext a hypermédia, jako prostředek, kterým mohou studenti objevovat nejrůznější témata plně podle svých zájmů a tempa. Zdůrazňuje, že hypermédia nebude potřeba „programovat“ -- místo toho budou \textquote[{\autocite[DM18]{Nelson1974}}]{navrhovaná, psaná, kreslená a editovaná spisovateli, umělci, designéry a editory. \textelp{} Budou to média stejně jako obyčejná próza nebo obrázky a protože jsou v jistém smyslu \enquote*{multi-dimenzionální,} můžeme je nazývat hyper-média podle matematického významu pojmu \enquote*{hyper-}}. Nelson následně ukazuje některé příklady hypermédií, kromě nespojitého hypertextu a stretchtextu (\pnoref{p:ht:forms}) jsou to i „hypergramy“ -- interaktivní obrázky a animace, „hypermapy“ které je možné pozvolně přibližovat a překrývat informačními vrstvami nebo „hyper-komiks“ \autocite[DM19]{Nelson1974}.
+% Jako další příklady hypermédií uvádí hypertextová díla, například Bledý oheň Vladimíra Nabokova nebo Nebe, peklo, ráj Julia Cortázara \autocite[DM44]{Nelson1974}. Na výstavě EXPO'67 jej zaujal „gvětvící se“ film z Československa, který neviděl a jehož jméno zapomněl. Bavil se však v zákulisí s tvůrcem filmu, Radúzem Činčerou, který mu vysvětlil, že bez ohledu na možnost, kterou si diváci vyberu, film pokaždé dojde ke stejnému bodu volby. Navíc si „diváci většinou vybrali totožné možnosti, takže polovina filmu prakticky nebyla použitá“ \autocite[DM44]{Nelson1974}.\footnote{Název filmu na který si Nelson nemohl vzpomenout je Kinoautomat Člověk a jeho dům.}
+
+Nelson se pak podrobněji věnuje svým teoriím a představám o myšlení a tvorbě. \textquote[{\autocite[DM45]{Nelson1974}}]{Skutečný sen je, aby \enquote{vše} bylo jednou v hypertextu}.
+
+\begin{quoted}{\autocite[DM44]{Nelson1974}}
+\enquote*{Velkolepý hypertext} by se skládal ze \enquote*{všeho} co bylo napsáno o určitém tématu, i toho co s ním volně souvisí, provázané dohromady editory (a ne \enquote*{programátory}, sakra), ve kterém můžete číst \emph{ve všech směrech které vás zajímají}. Mohou existovat různé cesty pro lidi, kteří přemýšlí různými způsoby.
+\end{quoted}
+
+\label{p:dm:intertw}
+Výhodou hypertextu je pochopitelně odkazování -- pokud je potřeba propojit dvě myšlenky, nezbývá než vzít papír a napsat něco nového, co je spojí. Elektronicky je to otázka několika sekund \autocite[DM44]{Nelson1974}. Nelsonův cíl propojovat témata a hledat nové souvislosti je charakterizovaný v maximě \enterm{Everything is deeply intertwingled}:
+
+\begin{quoted}{\autocite[DM45]{Nelson1974}}
+Je důležité si uvědomit, že neexistují žádné \enquote*{obory} vědění; existuje pouze veškeré vědění, protože propojení mezi myriádou témat na světě nemohou být úhledně rozdělená.
+
+Hypertext konečně nabízí možnost tohle vše reprezentovat a prozkoumat, aniž by bylo nutné to ničivě rozdělit.
+\end{quoted}
+
+Počítačové systémy se však podle Nelsona vyvinuly směrem, kdy se snaží vše reprezentovat hierarchicky. To však není jejich přirozené chování, ale nátura lidí „od počítačů,“ kteří věří, že „vše je hierarchické“ \autocite[17.3]{intertw:Nelson}.
+
+Nelson používá označení \enterm{Thinkertoys} pro systémy, které pomáhají člověku myslet a představit si „komplexní alternativy“ \autocite[DM52]{Nelson1974}. Zde se soustředí zejména na porovnávání a pochopení různých textů a myšlenek v nich obsažených -- ať už jsou to vzájemně se vylučující svědectví, částečně se shodující texty (posvátné knihy, ústavy různých států) nebo různé teorie a jejich vazby ke konkrétním důkazům \autocite[DM52]{Nelson1974}. Nelsonovo řešení je vytvořit „kolaterální struktury,“ což jsou struktury se vzájemnými vazbami (či odkazy) skrze je lze porovnávat mezi sebou. Jde o stejný koncept jako v případě zipových seznamů (\pnoref[popsaných na]{sec:elf}; \cite[DM52]{Nelson1974}).
+Nelson nabízí dvě formy vizualizace takových struktur: dříve zmíněný \enterm{Parallel Textface} a 3D zobrazení, které nazývá \enterm{Th3}.
+
+\label{p:dm:paraviz}
+\enterm{Parallel Textface} je primární grafické zobrazení dokumentů pro systém Xanadu, charakteristické prakticky pro všechny implementace. V pozdějích textech tuto funkci Nelson nazývá \enterm{Trainspointing Windows} \autocite{paraviz}. V \enterm{Dream Machines} funkci popisuje jako paralelní zobrazení dvou (nebo více) textů vedle sebe a jejich vzájemných propojení. Jak uživatel posouvá hlavní text, sekundární („závislý“) text se posouvá tak, aby byly stále viditelné odkazy. Nelson zdůrazňuje potřebu plynulé animace pro pohyb textu, aby bylo patrné odkud se text objevil \autocite[DM53]{Nelson1974}.
+% Pro praktickou demonstraci vytvořil maketu rozhraní -- „v roce 1972 prakticky neexistovaly kancelářské počítače s obrazovkou; toto je kartonový model postavený na psací stroj s celuloidovým obrázkem který má vypadat jako obrazovka“ \autocite{paraviz}.
+Z tohoto návrhu i pozdějších implementací vyplývá, že odkazy mezi dokumenty jsou obousměrné a vedou mezi konkrétními úseky textu. Jak o čtyřicet let později podotýká \textcite[17.10]{intertw:Nelson}, absence viditelného propojení mezi paralelními stránkami je největším nedostatkem textových souborů, Webu, Wordu i PDF -- vše jsou to pouze elektronické systémy pro simulaci papíru. Nelson přitom doufal, že počítačové systémy, jako Engelbartův NLS, veškerou práci s papírem eliminují \autocite[DM45]{Nelson1974}, nikoliv že jej budou simulovat.
+
+\enterm{Th3} (zkratka pro \enterm{Thinkertoy in 3 dimensions}) je Nelsonův koncept pro práci s textem ve 3D \autocite[DM55]{Nelson1974}. V krychli jsou shluky bodů\footnote{Nelson si hraje s dvojitým významem slova \enterm{point}, které lze chápat jako bod nebo jako „pointu“ -- určitou myšlenku textu.},
+které je možné si promítnout na stěnu krychle. Projekce více bodů tak může tvořit souvislý text.  Body je možné v prostoru organizovat podle různých parametrů, např. aktuálnosti, důležitosti nebo podle jiných, uživatelem definovaných atributů. Propojené body lze „rozštěpit“ do dvou krychlí, čímž vzniká obdoba paralelního zobrazení více dokumentů, ale s prostorovou vizualizací vazeb jednotlivých „point“.
+Nelson v podstatě vizualizuje myšlenku transformační gramatiky, s tím, že \textquote[{\autocite[DM55]{Nelson1974}}]{psaní je povrchová struktura \enquote{point,} které byly vloženy a spojeny do struktury přechodů, poznámek atd.}.
+Tento koncept podtrhuje Nelsonův vizuální a prostorový přístup k problému organizace myšlenek, který je patrný i v systému ZigZag (\pnoref{sec:zigzag}).
+
+\label{p:dm:xanadu}
+V závěru knihy Nelson popisuje Xanadu jako operační systém se dvěma programy: obecný systém pro práci s „extrémně komplexními daty v ohromných souborech“ (v dnešní terminologii \enterm{backend}) a zobrazovací systém s podporou animací a programy pro vizualizace (\enterm{frontend}). Parallel Textface je jen jednou z forem vizualizace \autocite[DM57]{Nelson1974}. Nelson předpovídá, že systém Xanadu bude dostupný během roku 1976 \autocite[DM56--DM57]{Nelson1974}.\footnote{%
+Možná se jedná o verzi „xu76“ na které pracoval William Barus v letech 1973--76 \autocite[26]{Nelson1999b}, více informací o této verzi se mi však nepodařilo zjistit.}
+Systém je možné propojit po lokální síti, Nelsonova představa jde však ještě dál: kompletní infrastruktura propojených počítačů která umožní uživatelům sdílet a vytvářet veškeré textové i multimediální dokumenty. Protože vybudování takové sítě by bylo extrémně nákladné, Nelson navrhuje použít franšízový model, ve kterém si bude každý moci založit lokální „pobočku Xanadu“ připojenou do globální sítě:
+
+\begin{quoted}{\autocite[DM57]{Nelson1974}}
+Z velké dálky děti vidí vysoké, zlaté X. \enquote*{Tati, nemůžeme zastavit? Chci si zahrát Spacewar,} říká malý Johnny. Velká sestra se přidá: \enquote*{Víte co? Potřebovala bych něco zjistit pro můj sloh o římské politice.} A máma řekne: \enquote*{Hele, mohli bychom tam poobědvat.}
+
+A tak zatočí u cedule s nápisem \enquote*{PŘES 2 MILIARDY HODIN U OBRAZOVEK} a zaparkují. Táta ukáže recepčnímu svou kreditní kartu Xanadu a děti se rozběhnou k obrazovkám. Máma a táta si zatím počkají na velkou horizontální obrazovku, protože spolu chtějí sdílet jisté vzpomínky...
+
+Sestřin sloh pak samozřejmě přijde jejímu učiteli přes \emph{jeho} Xanadu konzoli.
+\end{quoted}
+
+Uživatelé se budou moci připojit k nejbližšímu stánku přes telefon z domova a součástí poboček budou i soukromé místnosti s několika obrazovkami pro oslavy, jednání nebo přednášky. Nelson to dokládá několika náčrty pobočky franšízy s šestiúhelníkovou architekturou a velkým, zlatým X. Nechybí ani reklamní píseň pro propagaci Xanadu \autocite[DM57]{Nelson1974}. Nelsonova představa informační franšízy je úsměvná a pravděpodobně ji sám koncipoval s jistou nadsázkou, na druhou stranu není příliš vzdálená realitě internetových kaváren, které začaly vznikat zejména v devadesátých letech. Nelson také prezentuje maketu \enquote{\enterm{wearable}} verze Xanadu. Jedná se o přenosný počítač \enterm{Porta-Xan}, který si uživatel nese na zádech s CRT monitorem a obraz se mu promítá na plexisklo před obličejem \autocites[DM57]{Nelson1974}{Nelson1998a}.
+
+„Nelsonovy kánony“ nakonec definují základní pravidla, kterými by se měl řídit každý systém, který pracuje s informacemi -- „Návrh zákona práv na informace“ \autocite[DM58]{Nelson1974}. Nelson zdůrazňuje mj. požadavky na plynulost a rychlost odezvy celého systému či jednoduchost pro uživatele (tzv. „Pravidlo deseti minut“ -- laický uživatel musí být schopen se v tomto čase naučit systém ovládat). Jedná se o pravidla použitelnosti, která lze aplikovat i v současnosti. Další pravidla vycházejí z plánovaných vlastností Xanadu: možnost propojovat libovolné textové i multimediální informace či schopnost citovat se snadným přechodem ke zdrojovému materiálu. Nelson zdůrazňuje i ochranu uživatelů „před špionáží a sabotáží“ -- uživatelé musí mít možnost chránit svou identitu a identifikovat autentickou verzi dokumentu. Systém musí zachovávat i autorská práva: pokud si čtenář chce přečíst nějaký materiál, musí si jej zakoupit. Autoři dostanou z nákupu honorář. Část těchto kánonů je přeformulovaná v seznamu cílů Xanadu které sepsal Andrew Pam (\pnoref{p:xana:goals}).
+
+% Nelsonův návrh také popisuje neomezenou funkci „zpět“ s větvením, která odpovídá dřívějšímu návrhu proustovské editace (\pnoref{p:ht:proust}) \autocite[DM54]{Nelson1974}.
+% Nelson se v textu věnuje zobrazovacím zařízením a 3D grafice, popisuje i svůj vynález, systém \enterm{The Fantasy Scene Machine\texttrademark}, který by umožnil vytvářet „fotorealistické fotografie a filmy ve stylu Hieronyma Bosche“ \autocite[DM38]{Nelson1974}.
+
+% 74: Computer Lib / Dream Machines, síťování -> Docuverse
+% - paralelní prohlížení
+% 3D zobrazení
+% franšízy
+
+\subsection{Xanadu Operating Company}
+
+V roce 1979 se Nelson setkal s několika nadšenci, kteří měli zájem realizovat jeho návrhy. Během léta, které je v historii Xanadu nazýváno \enterm{Swarthmore summer}, Nelson společně s Rogerem Gregorym, Markem Millerem, Stuartem Greenem, Ericem Hillem a Rolandem Kingem položili základ nové verze Xanadu postavené na obecné teorii enfilád (\cite{xuhistory}; \pnoref[popis na]{p:enf:gen}) a „xanalogické struktuře“ dokumentů \autocite[17.13]{intertw:Nelson}.
+
+Gregory toho roku začal vyvíjet a organizovat tým kolem Xanadu prakticky na plný úvazek a na své náklady, s čímž pokračoval i po následující dekádu \autocite[81]{Barnet2014}. Jak Gregory uvádí v rozhovoru pro Internet Archive: \textquote[{\autocite{Gregory2010}}][.]{Ted \textins{Nelson} umí být velice rušivý. Ted je vážně geniální, ale... Já jsem chtěl hlavně vše dokončit} Proto když v roce 1983 vznikla firma \enterm{Xanadu Operating Company} (XOC), Gregory zařídil, aby Nelson sídlil v Sausalito a zbytek týmu v Palo Alto\footnote{Cesta autem trvá přes hodinu.} \autocite{Gregory2010}. S Nelsonem byla podepsaná tzv. Stříbrná dohoda (\enterm{Silver Agreement}), která Gregorymu dávala právo řídit vývoj a shánět investice \autocite[81]{Barnet2014}. Nelson nebyl s touto dohodou spokojený, každý týden sice dojížděl na schůzky, ale cítil se jako „outsider“ ve vlastním projektu -- jak si všímá \textcite[81]{Barnet2014}, podobná byla i situace kolem vývoje HES; Nelson si nepřipadal vítaný v žádném z projektů, jehož vznik inspiroval.
+
+V roce 1987 se Gregorymu podařilo domluvit spolupráci se společností Autodesk, která o rok později koupila 80\% podíl v XOC a financovala rozvoj Xanadu s úmyslem vytvořit komerční produkt \autocite[Xanadu]{Walker2017}. Díky stabilnímu financování mohl nyní Gregory přizvat dlouhodobé členy projektu, včetně Marka Millera \autocite[10]{Wolf1995}. Stříbrná dohoda zůstala v platnosti a Nelson si ponechal právo na hotový produkt s úmyslem vybudovat veřejný publikační systém skrze síť informačních franšíz, nyní pojmenovaných \enterm{SilverStands™} \autocite[5/6]{LitMachines}. Gregory považoval svou verzi Xanadu téměř za hotovou a na trh měla být uvedena za osmnáct měsíců \autocite[Xanadu]{Walker2017}. Jak Gregory prohlásil na tiskové konferenci: „Vidíte, že je to skutečné, protože to padá“ \autocite{Merron1988}. Miller se však domníval, že dosavadní návrh má fundamentální chyby a rozhodl pro implementaci podle zcela nového návrhu \autocites[82]{Barnet2014}[11]{Wolf1995}. Nelson s odstupem času vnímá rozhodnutí o financování Autodeskem a novou implementaci systému jako velkou chybu: \textquote[{\autocite{trollout}}]{\textelp{} s přílivem peněz, spoustou nováčků a zcela mimo můj vliv se projekt začal vymykat kontrole. Trpěl typickými chybami: mnoho psů \textins{zajícova smrt}, příliš velká sousta, přepřahání uprostřed kopce a efekt druhého systému\footnote{Efekt druhého systému charakterizuje tendenci vývojářů a architektů předimenzovat návrh druhé verze systému. U prvního návrhu ještě neznají problémovou doménu -- „neví, co dělají.“ U druhého se ale pokusí implementovat všechny funkce, na které se předtím nedostalo. Vznikne tak nabobtnalý a příliš složitý návrh. U následujících návrhů „jsou již poučeni“ \autocite[55]{Brooks1975}.}.}
+V jeden moment v podstatě vznikalo Xanadu ve třech podobách: jako Nelsonova vize, Gregoryho implementace (verze xu88, \pnoref{sec:impl:green}), která byla nejblíže dokončení a implementace podle Millerova návrhu (\enterm{XOC Server}, resp. verze xu92, \pnoref{sec:impl:gold}). Po čtyřech letech a investici kolem pěti milionů dolarů Autodesk přestal XOC financovat \autocites[Farewell, Xanadu]{Walker2017}[82]{Barnet2014}. Vývoj XOC Server pokračoval pod firmou Memex do roku 1995 \autocite[4]{XanaFAQ}, avšak software zůstal nedokončený \autocite{Udanax:Gold}. Kód obou implementací Xanadu zveřejnil Gregory v roce 1999 pod názvem Udanax \autocite{xuhistory}.
+
+\subsection{Literary Machines}
+
+Mezi lety 1980 a 1993 Nelson publikoval několik edic knihy \citetitle{LitMachines}, kde uceleně a podrobně představuje vizi hypertextu a Xanadu.\footnote{\Textcite[75]{Barnet2014} upozorňuje, že se edice publikované před rokem 1987 výrazně liší od edic pozdějších. V této práci vycházím z posledního vydání knihy z roku 1993.}
+Samotná kniha je nelineárně organizovaná jako hypertext -- po kapitole nula následuje několik kapitol se stejnými čísly. Čtenář je vyzván, aby je četl v libovolném pořadí (měl by však vždy projít kapitolou dva, dokud jí nebude chápat) \autocite[Plan of This Book]{LitMachines}.\footnote{Kniha se dobře čte i zcela lineárním způsobem.} Nelson zde popisuje systém hypertextové literatury z teoretického, společenského i kulturního hlediska. Řada myšlenek z knihy -- zejména teorie a technické aspekty hypertextu -- se opakují i v pozdějších Nelsonových textech a jsou shrnuté \pnoref[na]{sec:xanafeat}. Zmínil bych Nelsonovu představu o kulturním dopadu, technických vlastnostech Xanadu a obchodním modelu.
+
+Nelson se domnívá, že dostupnost globálního hypertextového systému by mohla vést k rozvoji „subkultury intelektu,“ která v sobě pojí akademickou tradici s \textquote[{\autocite[3/16]{LitMachines}}]{novou generalistickou subkulturou \textelp{}, která spojuje sci-fi s populární vědou}. Franšízy Xanadu povedou placení nadšenci \enterm{Xanadu Hypercorps}, kombinace knihovníků, stevardů a „geeků“ (ne však nutně techniků či programátorů). \enterm{Hypercorps} pomůžou zákazníkům vytěžit maximum ze systému („v rámci daného rozpočtu“) a zároveň budou sdílet znalosti a ukazovat nové funkce systému a nejrůznější objevy nalezené v hlubinách hypertextu \autocite[3/16]{LitMachines}.
+Komunita \enterm{Hypercorps} bude mít vlastní „argot“ a bude pořádat festivaly a události: \textquote[{\autocite[3/16]{LitMachines}}]{Hypercony, Kublacony a Front-End Funkce, Footnote Festivaly a Intertwingularity Expo.}
+Nelson neváhá nazvat tuto subkulturu sekulárním kultem, který bude mít vlastní společenský žebříček \autocite[3/16--3/17]{LitMachines}.
+
+Nelson ve své vizi pravděpodobně vychází z vlastní zkušenosti s ranými komunitami amatérských nadšenců kolem počítačů, jako  \enterm{People's Computer Club} nebo \enterm{The Homebrew Computer Club} \autocite[260, 282]{Markoff2005}. \Textcite[14]{Rheingold1985} vidí jádro Nelsonových myšlenek právě v komunitě: počítač je komunikační médium, které umožní vznik interaktivních on-line komunit. Rozšíření Internetu skutečně vedlo ke vzniku nespočetného množství virtuálních komunit s vlastní hierarchií, žargonem a systémem privilegií, jejichž členové se v řadě případů scházejí v reálném světě.
+
+\label{p:litmachines:4}
+Čtvrtá kapitola knihy se věnuje technickému návrhu Xanadu, který byl částečně implementovaný ve verzi xu88 (\pnoref{sec:impl:green}). Systém je rozdělený na serverovou část (\enterm{backend}) a klientskou část (\enterm{frontend}), které spolu komunikují pomocí protokolu FEBE. Klient řeší zobrazení a editaci dokumentů s odkazy. Serverová část slouží jako úložiště dokumentů a zajišťuje jejich distribuci napříč ostatními servery pomocí protokolu BEBE. Návrh počítá s tím, že dokument bude mít sice jeden originální zdroj, ale bude moct být uložen na více serverech pro urychlení přístupu a zálohování \autocite[4/71]{LitMachines}.
+
+\label{p:litmachines:docs}
+Každý dokument se skládá ze dvou sekcí: dat a odkazů. Dokument však nemusí být kompletní; vedle bytů, které jsou v něm fyzicky přítomné („nativní“) může odkazovat na byty v jiných dokumentech, včetně odkazů \autocite[4/6--4/11]{LitMachines}. Jedná se o aplikaci principu transkluze, kdy se data z jiného dokumentu stanou transparentně součástí jiného dokumentu (\pnoref{sec:xanafeat:translc}). Stejným principem je možné vkládat i části multimediálních dokumentů, které jsou odkazované stejným schématem.
+
+\label{p:litmachines:tumbler}
+Dokumenty a jejich verze jsou unikátně identifikované pomocí adres nazvaných \enterm{tumbler}. Ty se skládají z několika segmentů oddělených nulou, které označují server, uživatele, dokument včetně jeho verze a element v dokumentu -- buď konkrétní byte, nebo odkaz. Například:
+
+\begin{verbatim}
+1.4.2.0.3.4.5.0.6.7.0.1.890
+\end{verbatim}
+
+Tato adresa odkazuje na 890. byte dokumentu \texttt{6.7} (což může být chápáno jako sedmá verze dokumentu číslo šest) uživatele nebo podúčtu \texttt{3.4.5} na serveru \texttt{4.2}. Předposlední číslo v adrese (\texttt{1}) určuje adresaci na byty obsahu; definované je také číslo \texttt{2}, které adresuje odkaz v dokumentu \autocite[4/29--4/30]{LitMachines}.\footnote{Jiný typ dat, např. objekt ve 3D scéně nebo snímek videa, by pravděpodobně mohl používat jiné číslo.}
+Na začátku adresy je prefix \texttt{1}, který umožňuje cílit na celý adresní prostor \autocite[4/22]{LitMachines}. Vedle těchto „adresačních tumblerů,“ které cílí na konkrétní entitu, existují tzv. „rozdílové tumblery“ (\enterm{difference tumblers}). Ty slouží k výběru určitého rozsahu entit (ať už jsou to byty v dokumentu nebo všechny uživatelské účty na konkrétním serveru). Rozdílový tumbler je relativní vůči adresnímu tumbleru: je nutné jej přičíst nebo odečíst od adresy, čímž vznikne rozsah (\enterm{span}). Typický příklad využití je u odkazů mezi dokumenty, které ukazují na konkrétní rozsah bytů v textu. Tumbler připomíná hybrid mezi IP adresami a systémem URI, používaným na Webu. Oproti URI má však výhodu skutečné uniformity: adresa reflektuje verze dokumentů a umožňuje cílit v dokumentu až na úroveň bytů.
+
+\label{p:litmachines:business}
+Pátá kapitola rozebírá obchodní plán Xanadu, včetně podmínek franšízového modelu, návrhů smluv, cen pro koncové uživatele a honorářů pro autory. Vývoj Xanadu měl být do velké míry centralizovaný a provoz systému by podléhal smluvnímu vztahu mezi centrálou, poskytovateli (franšízanty) a uživateli. Ty by mimo jiné poskytly autorům páky proti zneužití jejich autorských práv (například pokud by někdo publikoval jejich text jako svůj) nebo nepoctivým poskytovatelům (kteří např. nevyplatí autorům honorář) \autocite[5/16--5/18]{LitMachines}. Dokumenty by ve výchozím stavu byly privátní, uživatelé by je však mohli explicitně zveřejnit (publikovat), čímž vznikne nová smlouva s poskytovatelem \autocite[5/19--5/21]{LitMachines}. Publikace by s sebou nesla výhody i omezení. Na dokument se mohou odkazovat ostatní uživatelé a autor získává honorář. Zveřejnění je však jednorázově zpoplatněné a publikovaný dokument je obtížné stáhnout z oběhu. %TODO 
+To je nicméně záměr, protože ostatní autoři musí upravit dokumenty, které se na publikovaný materiál odkazovaly \autocite[2/42--2/43]{LitMachines}. Určitým kompromisem jsou tzv. \enterm{privashed} dokumenty, které může autor kdykoliv stáhnout, ale nedostává za ně honorář \autocite[2/44]{LitMachines}. Autoři zveřejněných dokumentů musí akceptovat, že jejich texty mohou být součástí jiných dokumentů, případně že na ně mohou vést odkazy z textů se kterými nesouhlasí \autocite[5/20--5/21]{LitMachines}. To tvoří i základ pro institut „transcopyrightu,“ popsaného \pnoref[na]{sec:transcopyright}.
+
+\subsection{Prokletí Xanadu}
+\label{sec:xanadu:curse}
+
+V návaznosti na události v Autodesku publikoval Gary Wolf kritický článek \citetitle*{Wolf1995} v časopise \enterm{Wired} \autocite{Wolf1995}. Wolf v článku „popisuje projekt v Autodesku jako tragédii a Nelsona jako technického ignoranta“, který „může za fiasko Xanadu v Autodesku“ \autocite[81]{Barnet2014}.
+Pro Nelsona je tento článek dodnes citlivé téma. Poslal dopis editorům \autocite{Nelson:wired} a publikoval podrobnou odpověď, kde upozorňuje na faktické chyby v článku \autocite{Nelson:ararat}.
+K tématu se vrátil i po deseti a dvaceti letech \autocites{trollout}{Nelson:20th}. Gary Wolf (kterého Nelson častuje přezdívkou „Gory Jackal“) byl podle Nelsona „nájemný vrahoun“ který mu téměř zničil kariéru, Gregoryho označil za technicky neschopného a členy týmu Xanadu prohlásil za duševně choré. Za skutečné viníky Nelson považuje zakladatele časopisu Wired (Louis Rossetto a Jane Metcalfe) se šéfredaktorem Kevinem Kellym:
+
+\begin{quoted}{\autocite{trollout}}
+Tříčlenná banda z časopisu Wired -- z pozice hlavních celebrantů a přisluhovačů World Wide Webu -- měla osobní zájem umlčet odpor. Tím, že nás veřejně upálili, utvrdili předsudky svých čtenářů a ujistili je, že dominantní paradigma počítačů není ohrožené a nebude nutné se učit nic nového.
+\end{quoted}
+
+Ačkoli se Wolfův článek snaží vyvolat dojem, že projekt Xanadu byl v devadesátých letech mrtvý a nikdy z něj nevzejde funkční produkt, Nelson se rozvoji Xanadu věnuje do současnosti. Během posledních dvaceti let představil řadu specifikací a implementací.
+
+\subsection{Pozdější vývoj a Web}
+
+Po ukončení spolupráce s Autodeskem zůstala Nelsonovi práva na značku Xanadu a návrh systému doznal určitých zjednodušení. V roce 1993 uvedl návrh publikačního systému \enterm{Xanadu Light}, který se zaměřuje zejména na model autorských práv a provizí za odkazy \autocites{XanaLight}[4]{XanaFAQ}. Andrew Pam, který vývoj projektu Xanadu sledoval od svých šestnácti let \autocite{intertw:Pam}, ve stejném roce založil \enterm{Xanadu Australia} a ve spolupráci s Nelsonem vytvořil několik pozdějších prototypů ke specifikacím, které Nelson publikoval ve druhé polovině devadesátých let -- mj. ZigZag (\pnoref{sec:zigzag}) a Transquoter (\pnoref{sec:transquoter}).
+
+\label{p:xana:flinks}
+Nelson v roce 2005 zveřejnil koncept \enterm{Transliterature}, který přenáší některé vlastnosti Xanadu na Web.
+Počínaje tímto návrhem je Web použitý jako médium pro distribuci obsahu. Oproti předchozímu návrhu popsanému v \enterm{Literary Machines} mohou odkazy fungovat jako samostatné entity, na které se dokument odkazuje. Nejprve se výsledný dokument sestaví ze seznamu zdrojů (EDL, viz dále) a vznikne tzv. \enterm{concatext}. Ten je následně „překrytý“ odkazy (\enterm{content links}, později \enterm{floating links}, dále „plovoucí odkazy“), které mohou propojovat různé segmenty více textů \autocites{xanasimp}{Translit}. Stejný návrh využívá Pamův Transquoter (\pnoref{sec:transquoter}) a všechny pozdější návrhy; liší se pouze názvosloví funkcí a syntax souborů.
+
+\label{p:xana:edl}
+Nelson v rámci projektu \enterm{Transliterature} popisuje i způsob, jak by mohla fungovat editace takových dokumentů. Protože „transliterární dokument“ obsahuje pouze reference na zdrojové dokumenty, výsledný text je možné měnit pouhou změnou odkazů na zdroje. Nový text je přidávaný do samostatného zdrojového dokumentu. Nelson přirovnává tento způsob práce s textem nelineárnímu střihu filmu, kde se používá tzv. \enterm{Edit Decision List} (EDL): seznam referencí do zdrojových souborů videa se seznamem úprav (např. efekty, přechody), které zachovávají původní záběry nezměněné \autocites[11]{Nelson1999b}{Translit}. Obdobně text, po sestavení ze seznamu referencí EDL, může být „překrytý“ plovoucími odkazy, které mohou plnit funkci „efektů.“ Například v citaci jiného textu může být zapotřebí změnit velikost písmen, což je efekt, který nevyžaduje změnu zdrojového materiálu. Stejně tak mohou plovoucí odkazy doplňovat formátování textu nebo strukturu dokumentu \autocites[4/53--4/55]{LitMachines}{Translit}{Nelson:XanaduSpace}. Ačkoli všechny prototypy tohoto konceptu pracují pouze s textem, teoreticky by bylo možné podporovat i multimédia: transliterární dokumenty jsou v tomto směru neutrální. Zároveň tento návrh umožňuje snadno vytvářet alternativní verze dokumentů při zachování integrity zdrojových materiálů (a potenciálně i honoráře původních autorů). Pokud chce čtenář vytvořit vlastní verzi dokumentu, která se liší v několika slovech, může nadále citovat většinu originálního materiálu společně s přidanými kousky textu v samostatném dokumentu \autocite[2/45--2/46]{LitMachines}.
+
+% Návrhy \enterm{Transliterature} a pozdější \enterm{Xanadoc} využívá Web pro distribuci obsahu. Pozdější implementace (\enterm{OpenXanadu} a \enterm{XanaViewer}) jsou realizované přímo pomocí webových technologií, ale pro  nepoužívají webové formáty pro popis samotných dokumentů (tj. HTML a CSS). Web 
+
+\section{Prototypy a implementace Xanadu}
+\label{sec:xana:proto}
+
+Projekt Xanadu byl označen za „nejdéle běžící \enterm{vaporware}\footnote{Ze slova \enterm{vapor} -- pára; počítačový produkt, který je sice oznámen, ale není nikdy uveden na trh, ani zrušen \autocite{wiki:Vaporware}.} v dějinách počítačů“ \autocite{Wolf1995} který existuje „déle, než je většina z nás naživu“ \autocite{XanaLight}.
+Ačkoli Nelsonova velkolepá vize zůstala nenaplněná, v průběhu existence projektu vznikla řada funkčních prototypů. „Jako přízrak budoucnosti, vše, co máme z Xanadu je jeho simulákrum, jeho ideály, jeho nápady -- a pár vábivých střípků kódu“ \autocite[68]{Barnet2014}. Následující část chronologicky popisuje, které z funkcí Xanadu byly doposud implementované v existujících aplikacích a prototypech, na jejichž vzniku se Nelson podílel.
+
+\subsection{Juggler of Text}
+\label{sec:impl:jot}
+
+Nelson sepsal v roce 1972 návrh textového editoru \enterm{Juggler of Text} (JOT), který popisuje jako \textquote[{\autocite[1]{Nelson1972}}]{\textins{interaktivní} textový editor určený pro obyčejné lidi, kteří nevědí nebo nechtějí nic vědět o počítačích, ale potřebují pracovat s textem}. JOT je zaměřený na úpravu dokumentů, umožňuje snadno vkládat, kopírovat a přesouvat kusy textu a automaticky detekuje věty a odstavce pro snadnou manipulaci. Od roku 1972 existovaly čtyři implementace editoru, z nichž se dochovala pouze poslední z roku 1986, naprogramovaná Stevem Withamem v jazyce Forth pro počítač Apple II \autocite{JOTinstrux17-D6}.
+
+Withamovu verzi je nyní možné vyzkoušet ve webovém prohlížeči na stránkách Internet Archive \autocite{JOT}.
+Jak zdůrazňuje \textcite{JOTinstrux17-D6}, JOT byl navržený v době, kdy neexistovaly \enquote{žádné textové procesory, osobní počítače, klávesnice s malými písmeny, vizuálními displeji, ani polohovací zařízení (kromě velice drahých počítačů)}.
+JOT funguje na textovém terminálu a podle Nelsona \textquote[{\autocite[1]{Nelson1972}}]{obsahuje 60~\% funkcí kompletního systému Xanadu bez grafiky, funkcí pro práci se složenými daty a jiné techniky}. Ačkoli editor řeší manipulaci s textem, není zde naznačená ani práce s historií, ani žádné hypertextové funkce. Nelson proto nejspíše podcenil náročnost implementace plně funkčního systému, podobně jako v případě svého prvního projektu na Harvardu (\pnoref{p:evol:harvard}).
+%Stránka na Archive.org zmiňuje, že JOT měl sloužit jako \enterm{front-end} pro textový procesor \enterm{HyperTyper}
+
+\subsection{Udanax Green (xu88) a Pyxi}
+\label{sec:impl:green}
+
+Roger Gregory začal s implementací Xanadu podle „obecné teorie enfilád“ v roce 1979 (\pnoref{p:enf:gen}). Tuto verzi popisuje Nelson v \citetitle{LitMachines} \autocite*{LitMachines} jako XU.87.1 a později xu88 \autocite{Nelson1999b}; zdrojový kód byl publikovaný v roce 1999 pod názvem \enterm{Udanax Green} \autocite{Udanax:Green}.
+
+V souladu s návrhem je implementace rozdělená na \enterm{backend} a \enterm{frontend}, které spolu komunikují pomocí protokolu FEBE (\pnoref{p:litmachines:4}). Gregory naprogramoval backend a původní frontend pro platformu NeXT v jazyce C. Ka-Ping Yee v roce 1999 napsal nový frontend v jazyce Python, který je použitelný na současných systémech (viz obr. \ref{pic:pyxi}) a je zahrnutý v balíčku se zdrojovým kódem \autocite{Udanax:Green}.
+
+\imagefigurelarge[Udanax Green a Pyxi (1999)]{pyxi}{Porovnání dvou verzí Deklarace nezávislosti USA ve frontendu Pyxi nad backendem Udanax Green.}
+
+Udanax Green umožňuje vytvářet a editovat dokumenty, případně mezi sebou porovnávat různé verze dokumentů. Program funguje pouze na lokálním systému, není zahrnutá podpora ani pro distribuci mezi servery (BEBE), ani práce s multimediálním obsahem.
+Navzdory tomu se jedná o jednu z nejkompletnějších implementací Xanadu a Nelson jí považuje za „referenční verzi“ \autocite[9]{xanalogical}.
+
+\subsection{Udanax Gold (xu92.1)}
+\label{sec:impl:gold}
+
+Mark Miller začal s reimplementací Xanadu v roce 1988. Verze je označovaná kódem xu92 a byla zveřejněná jako \enterm{Udanax Gold}.
+Millerův návrh je postavený na struktuře Ent (\pnoref{p:enf:ent}) a implementovaný v jazyce Smalltalk \autocite{Udanax:Gold}.
+
+Autoři zvolili implementaci na platformě \enterm{ParcPlace}, která však měla vysoké licenční poplatky. Proto byla použita pouze podmnožina jazyka Smalltalk (přezdívaná XTalk), kterou bylo možné automaticky přeložit do C++ (resp. jeho podmnožiny nazvané X++). Vývojáři tak zkombinovali výhody příjemného vývojářského prostředí jazyka Smalltalk s portabilitou a výkonem jazyka C++ \autocite{Udanax:Gold}.
+
+Kód této verze není snadno spustitelný. Vývojářský tým Xanadu provedl v ParcPlace úpravy a tato platforma se již nevyvíjí. Řešením by mohl být převod kódu pro jinou, lépe podporovanou platformu. David Jones se v projektu Abora pokusil o automatický překlad do jazyka Java \autocite{Abora}. V žádné ze zveřejněných podob však Udanax Gold není v současnosti funkční.
+
+\subsection{OSMIC}
+\label{sec:osmic}
+
+Nelson se v roce 1994 přesunul do Japonska, kde začal učit na univerzitě Keio \autocite[4]{XanaFAQ}. Mezi lety 1996 a 1999 se věnoval návrhu \enterm{Open Standard for Media InterConnection} (OSMIC). OSMIC formuluje myšlenky větvícího se verzování dokumentů a transkluzi ve formě otevřeného standardu, který mohou implementovat různí klienti. Nelson popisuje výhody OSMIC z hlediska funkce „zpět“ v textových editorech: Většina editorů používá lineární funkci zpět, tzn. pokud se uživatel vrátí zpět v historii a začne psát něco nového, jeho předchozí kroky jsou nenávratně ztracené. OSMIC namísto toho vytvoří alternativní verzi dokumentu, což je užitečné i pro editaci dokumentu více uživateli (namísto konfliktů vzniknou dvě verze) a transkluzi obsahu z jedné verze dokumentu do druhé \autocite{OSMIC:time}.
+
+Pro OSMIC existuje prototyp serveru implementovaný v jazyce Perl a klient ve formě rozšíření pro textový editor Emacs. Obě implementoval Ken'ichi Unnai \autocite{OSMIC:install}. Klientská aplikace posílá na server instrukce o změně textu. Uživatel může text „rozstřihnout“ na jednotlivé segmenty, což mu umožní je přesouvat a transkludovat \autocite{OSMIC:use}. Princip „střihu textu“ se pravděpodobně rozvinul do konceptu EDL dokumentů v pozdějším projektu Transliterature (\pnoref{p:xana:edl}), pro který měl být OSMIC adaptovaný jako systém pro správu „mikroverzování“ obsahu \autocite[Microversion Management]{Translit}.
+
+\subsection{ZigZag}
+\label{sec:zigzag}
+
+ZigZag není implementací Xanadu, ale je to obecný systém pro správu a vizualizaci datových struktur. ZigZag zobecňuje Nelsonův původní koncept zipových seznamů (\cite[2.1]{Nelson:ZigZag}; \pnoref[pro popis konceptu viz]{sec:elf}) a měl být použitý v pozdějších verzích Xanadu \autocite[27]{Nelson1999b}. Podle článku \citetitle{Nelson:ZigZag} \autocite{Nelson:ZigZag} lze ZigZag pochopit jako formu n-rozměrného tabulkového procesoru. Struktury ZigZag, nazývané \enterm{zzstructure} se skládají z buněk (\enterm{zzcells}), odkazů (\enterm{zzlinks}) a dimenzí (\enterm{zzdims}). V tradiční tabulce jsou buňky organizované do dvou dimenzí; buňka má nejvýše jednoho předchůdce či následovníka v každé dimenzi. ZigZag aplikuje stejná pravidla na neomezený počet dimenzí: buňka je skrze zzlink propojená nejvýše se dvěma dalšími buňkami v jedné dimenzi, ale počet dimenzí -- a tím pádem i počet propojení -- je neomezený. Buňky také nemusí na sebe navazovat, mohou tvořit samostatné seznamy. Dimenze tak mohou sloužit jako kategorie nesoucí určitý význam, například dimenze \enterm{d.clone} slouží k vytváření „klonových buněk“ pro jejich opakované využití v jedné dimenzi \autocite[4]{Nelson:ZigZag}.
+
+Strukturu lze chápat jako specifický typ spojových seznamů nebo omezený graf. Výhodou omezení je možnost snadné manipulace a vizualizace. Uživatel si zvolí dimenze, které chce vidět ve 2D nebo 3D zobrazení. Nelson jako příklad využití systému ZigZag uvádí genealogickou databázi \autocite[8.2]{Nelson:ZigZag} a na stránkách projektu je ke zhlédnutí video s ukázkou použití ZigZag k organizaci bioinformatického výzkumu \autocite{Xanadu:ZigZag}. \Textcite[9]{Nelson:ZigZag} také popisuje virtuální stroj postavený na ZigZag (\enterm{zzvim}). Buňky mohou obsahovat spustitelný kód a mohou tvořit uživatelské rozhraní. Teoreticky by tak bylo možné vytvořit kompletní ekosystém, kde jsou data i aplikace reprezentované stejnými prostředky, které uživateli nekladou žádná omezení v jejich propojování.
+
+Systém ZigZag se dočkal řady implementací \autocite[Table~1]{Nelson:ZigZag}. Andrew Pam implementoval první funkční verzi v jazyce Perl. Mezi roky 1999 a 2002 vznikal na finské univerzitě v Jyväskylä projekt GZigZag v jazyce Java. Nelson projekt na začátku podporoval, později však svou podporu stáhl. Nejprve se projekt musel přejmenovat na Gzz, aby neporušoval Nelsonovu ochrannou známku, a nakonec autoři museli práci zcela ukončit kvůli konfliktu s Nelsonovým patentem na zzstructure \autocites{Fenfire:History}{Fenfire:Gzz}. Projekt ve své poslední iteraci získal jméno Fenfire\footnote{\url{http://fenfire.org/}} a místo zzstructure používá systém RDF.
+
+% 99: ZigZag
+% lisp/java machine -- cosmology
+% http://himalia.it.jyu.fi/ffdoc/fenfire/history/Milestones.gen.html
+% gzigzag -> Fenfire
+% http://users.jyu.fi/~antkaij/plinzz.pdf
+
+
+\subsection{CosmicBook}
+
+\imagefigurelarge[CosmicBook (2001)]{cosmicbook}{Ukázka programu CosmicBook se třemi otevřenými dokumenty a viditelnými odkazy v podobě čar mezi okny.}
+
+CosmicBook z roku 2001 implementuje Nelsonův koncept \enterm{Trainspointing Windows} (\pnoref{p:dm:paraviz}). Aplikace vizualizuje odkazy mezi okny operačního systému (viz obr. \ref{pic:cosmicbook}). Jak podotýká \textcite{Nelson2015} v příspěvku na konferenci \enterm{The Future of Text 2015}, programátor Ian Heath musel obejít limitace operačního systému Windows a vytvořit průhlednou plochu přes celou obrazovku, na kterou jsou kreslená jednotlivá spojení. Aplikace slouží pouze k prohlížení dokumentů (nazvaných \enterm{Flights}), není možné ani upravovat stávající dokumenty, ani vytvářet nové \autocite{Xanadu:CosmicBook}.
+
+% Dechow2015, kap. 17.3
+% http://xanadu.com/cosmicbook/
+
+\subsection{TransQuoter}
+\label{sec:transquoter}
+
+V rámci projektu Transliterature v letech 2004 až 2005 (\pnoref{p:xana:edl}) implementoval Andrew Pam program \enterm{The TransQuoter} \autocite{Transquoter}. Nelson kladl důraz na vytvoření minimálního, jednoduchého prototypu pro demonstraci konceptu Transliterature \autocite{dlitClientSpec}. Jedná se o skript v jazyce Python, který zpracovává EDL dokument se seznamem referencí na zdrojové dokumenty. Reference jsou URL na textové a HTML dokumenty, které obsahují informace o rozsahu bytů, které se mají ze zdrojového dokumentu použít. Program tyto reference stáhne, vyextrahuje z nich daný rozsah bytů a vygeneruje HTML dokument s odkazy na originální zdroje. Pozdější implementace fungují na podobném principu s rozdílnou syntaxí pro EDL dokumenty.
+
+\subsection{Xanadu Space}
+\label{sec:xuspace}
+
+\imagefigurelarge[Xanadu Space (2007)]{xuspace}{Ukázka demonstračního dokumentu Xanadu Space; v popředí je primární dokument s vedlejším dokumentem a viditelnými vazbami k ostatním odkazovaným dokumentům.}
+
+Zatím nejpokročilejší realizací paralelního zobrazení dokumentů je projekt \enterm{Xanadu Space} z roku 2007, který naprogramoval Robert Adamson Smith \autocite{Nelson:XanaduSpace}. Xanadu Space vizualizuje dokumenty ve 3D (viz obr. \ref{pic:xuspace}). Uživatel v prostoru vidí všechny provázané dokumenty a jejich vzájemné vazby. Jak uživatel pročítá primární text, může si přivolat odkazovaný dokument, jehož příslušná pasáž se zobrazí vedle odkazu. Nelson se na prototypu také snaží demonstrovat, že dokumenty nemusí mít tradiční „obdélníkový“ tvar, ale je možné je zobrazit v nejrůznějších formách, například jako smyčku \autocite{Nelson:XanaduSpace}. Není jasné, čím je takové zobrazení užitečné, ale Nelson tím chce zřejmě demonstrovat především neomezené možnosti systémů, které se nesnaží simulovat papír.
+
+Systém, podobně jako většina ostatních prototypů, dokumenty neumožňuje upravovat. Podobně jako v aplikaci \enterm{TransQuoter} je zde použitý EDL dokument pro sestavení primárního dokumentu z kousků zdrojových dokumentů. Prototyp navíc překrývá dokument „plovoucími odkazy“ (\pnoref{p:xana:flinks}).
+
+Nelson tento prototyp prezentuje v samostatném videu \autocite{Nelson:vid:xuspace} a také v dokumentárním filmu \textcite{Herzog2016}. Na konferenci \enterm{The Future of Text 2015} řekl o tomto prototypu, že se „bohužel stal příliš komplikovaný a programátor další vývoj vzdal“ \autocite{Nelson2015}. Aplikaci pro Windows je možné získat z archivu původní domény Xanarama.net.\footnote{\url{https://web.archive.org/web/20121023041804/http://xanarama.net/}}
+
+\subsection{Xanadoc, OpenXanadu a XanaViewer}
+\label{sec:xanadoc}
+
+Nelson formalizoval původní návrh EDL dokumentů do formátu \enterm{Xanadoc} \autocite{xanasimp}. Vedle seznamu referencí na zdrojové dokumenty (EDL) obsahuje Xanadoc i tzv. \enterm{Overlay Decision List} (ODL). ODL je seznam adres na plovoucí odkazy, nyní nazývané \enterm{xanalinks}, které se nachází v samostatných souborech. Jejich funkce však zůstává stejná (\pnoref{p:xana:flinks}). Nelson představil dvě aplikace, které zpracovávají formát Xanadoc a obě fungují ve webovém prohlížeči.
+
+Starší implementaci tohoto návrhu prezentuje prototyp \enterm{OpenXanadu} Nicholase Levina z roku 2014.\footnote{Dostupný na \url{http://xanadu.com/xanademos/MoeJusteOrigins.html}} Funkčně je velice podobný Xanadu Space, ale dokumenty jsou organizované na dvourozměrné ploše (viz obr. \ref{pic:openxanadu}).
+
+\imagefigurelarge[OpenXanadu (2014)]{openxanadu}{Ukázka OpenXanadu s demonstračním dokumentem; hlavní text je uprostřed s viditelnými vazbami do odkazovaných dokumentů.}
+
+\label{p:impl:xanaviewer}
+Poslední verze Xanadu uvedená v roce 2016 pod názvem \enterm{XanaViewer} taktéž funguje v prohlížeči. Sekundární dokumenty jsou zobrazené v plovoucích oknech a prototyp demonstruje míšení zpoplatněného a volně dostupného obsahu (viz obr. \ref{pic:xanaviewer3}) \autocite{xuDemoPage}. Aplikace už není uzavřený prototyp s demonstračními daty, ale obecný systém pro zobrazování dokumentů ve formátu Xanadoc, kam uživatel vloží svůj vlastní dokument a systém jej zobrazí. Pro formát Xanadoc však ještě neexistuje editor. Nelson konstatuje že \textquote[{\autocite{Nelson:vid:xanaview}}]{s trochou odhodlání můžete vytvořit Xanadoc sami a poslat jej ostatním}. Vzhledem k množství různých souborů nezbytných pro Xanadoc je manuální vytváření souboru obtížné.
+
+\imagefigurelarge[XanaViewer3 (2016)]{xanaviewer3}{Ukázka XanaViewer3 s demonstračním dokumentem. Transkludovaný obsah (zvýrazněný oranžově) je možné zobrazit v původním kontextu v plovoucím okně. Placený transkludovaný obsah (maskovaný symboly) si uživatel může koupit.}
+
+% 2012 Xanadoc, EDL
+% http://xanadu.com/xanasimp
+% 2014: OpenXanadu Nicholas Levin
+% http://xanadu.com/xanademos/MoeJusteOrigins.html
+% 2015-- XanaViewer, XanaDoc
+% http://xanadu.com/xuDemoPage.html
+% New Game In Town
+
+
+% 83 - Ent (Drexler)
+% Literary Machines: 81, 87, 93
+
+% XOC: 88-92 pod Autodeskem
+
+
+% 95: Curse of Xanadu
+
+% 97: OSMIC, transkluze pro HTML
+
+% 99: Udanax, PyXi; python 1; Gold: smalltalk -> C++ / X++ - license fee
+% http://udanax.xanadu.com/gold/download/index.html
+
+
+\section{Vlastnosti a cíle Xanadu}
+\label{sec:xanafeat}
+
+Nelson s konceptem hypertextu sledoval konkrétní cíl. Jak popisuje v rozhovoru s Jimem Whiteheadem, psaní na papír je proces linearizace či „zploštění“ myšlenek:
+
+\begin{quoted}{\autocite[Rozhovor s Nelsonem podle][]{Whitehead1996}}
+Vždy mi na tom přišlo něco špatného, protože se pokoušíte vzít všechny ty myšlenky, které měly nějakou strukturu, řekněme, zcela vlastní prostorovou strukturu, a přesunete je do lineární formy. Čtenář nebo čtenářka pak musí vzít tuto lineární strukturu a přeskládat jí do vlastní představy o celém textu, opět uložené v oné nesekvenční struktuře.
+%  There was always something wrong with that because you were trying to take these thoughts which had a structure, shall we say, a spatial structure all their own, and put them into linear form. Then the reader had to take this linear structure and recompose his or her picture of the overall content, once again placed in this nonsequential structure. 
+\end{quoted}
+
+% \pnoref{p:dm:intertw}  -- neexistují obory myšlení, vše je propojené
+Hypertext má ušetřit čas autora i čtenáře, protože nedochází k této „serializaci“ myšlenek. Xanadu je potom aplikací hypertextu na „systém literatury.“ Jak si Nelson všímá v \citetitle{LitMachines}, v literatuře fungují funkční mechanismy citací, bibliografie a vazeb mezi dokumenty \autocite[2/11]{LitMachines}. Xanadu umožňuje tyto mechanismy skrze médium hypertextu materializovat, například zajistit okamžitý přístup k citovaným dokumentům, ukázat citace v původním kontextu, zpřístupnit nové verze textů a zajistit příjmy autorům. Data v počítači nejsou fyzicky limitovaná jako papír, proto je možné zachovat všechny revize a všechny verze vznikajících textů -- a zároveň porovnávat, jak se dokumenty vyvíjely a jak spolu souvisí.
+
+\label{p:xana:goals}
+Andrew Pam sepsal seznam cílů Xanadu, které se různé verze Xanadu snažily naplnit \autocite[2]{XanaFAQ}:
+
+\begin{enumerate}[a)]
+%a
+\item Každý Xanadu server je unikátně a bezpečně identifikovaný.
+%b
+\item Každý Xanadu server může fungovat samostatně nebo na síti.
+%c
+\item Každý uživatel je unikátně a bezpečně identifikovaný.
+%d
+\item Každý uživatel může hledat, získávat, vytvářet a ukládat dokumenty.
+%e
+\item Každý dokument se může skládat z různých částí libovolných typů dat.
+%f
+\item Každý dokument může obsahovat odkazy libovolného typu, včetně virtuálních kopií („transkluze“) libovolného jiného dokumentu v systému, ke kterému má vlastník dokumentu přístup.
+%g
+\item Odkazy jsou viditelné a mohou být následovány ze všech konců.
+%h
+\item Akt publikace dokumentu dává ostatním explicitní právo dokument odkazovat.
+%i
+\item Každý dokument může zahrnovat mechanismus provizí na libovolné úrovni granularity pro výběr poplatku za přístup k jakékoliv části dokumentu, včetně virtuálních kopií („transkluze“) celého dokumentu nebo jeho části.
+%j
+\item Každý dokument je unikátně a bezpečně identifikován.
+%k
+\item Každý dokument je chráněný před neoprávněným přístupem.
+%l
+\item Každý dokument může být rychle vyhledán, uložen a získán, aniž by uživatel věděl, kde je dokument fyzicky uložený.
+%m
+\item Každý dokument je automaticky přesunutý na fyzické úložiště odpovídající frekvenci přístupu z libovolného místa.
+%n
+\item Každý dokument je automaticky uložen v redundantních kopiích pro zajištění dostupnosti v případě katastrofy.
+%o
+\item Každý poskytovatel Xanadu může svým uživatelům účtovat poplatky v libovolné výši za uložení, získávání a publikaci dokumentů.
+%p
+\item Každá transakce je bezpečná a dostupná pouze účastníkům dané transakce.
+%q
+\item Protokol Xanadu pro komunikaci mezi serverem a klientem je otevřeně publikovaný standard. Vývoj aplikací třetích stran a integrace jsou vítány.
+\end{enumerate}
+
+K tomu Pam dodává, že Web splňuje požadavky a--e, k, l, q \autocite[\pno~3a]{XanaFAQ}. % TODO odkaz na srovnání s Webem
+V následující části kapitoly jsou popsané vlastnosti Xanadu týkající se perzistence a dostupnosti dokumentů (body a--d, j, l, m, n), odkazování (bod g) i transkluze obsahu (body e, f) a specifického řešení autorských práv a provizí pro autory (body h, i, o). Popis vlastností vychází primárně z knihy \citetitle{LitMachines} \autocite{LitMachines} a pozdějších Nelsonových publikací. Většina z vyjmenovaných cílů byla pouze specifikována jako návrh, v existujících prototypech nebyla implementována.
+
+\subsection{Perzistence a dostupnost obsahu}
+
+% získávání: distribuovaný systém, kolokace, -> Hyper-G, web: CDN
+Nelson si Xanadu představoval jako distribuovaný systém, který by mohl fungovat od jednoho uživatele na lokálním počítači, přes kancelář na lokální síti, po celosvětovou síť dokumentů -- \enterm{docuverse} \autocite[2/53]{LitMachines}. Každý dokument v síti je unikátně identifikovaný. Adresní schéma sice určuje server poskytovatele hostujícího daný dokument (\pnoref[viz tumbler na]{p:litmachines:tumbler}), ale nejedná se o jedinou kopii dokumentu. V síti může existovat neomezené množství kopií dokumentu na ostatních serverech pro urychlení přístupu a zálohování. Tímto konceptem se inspiroval mj. systém Hyper-G (\pnoref{sec:hyperg}).
+
+Dokument v Xanadu může být libovolný datový soubor -- text či multimédia. Vzhledem k neutralitě obsahu a transparenci fyzického umístění dokumentů se tak datové úložiště Xanadu podobá spíše distribuovanému souborovému systému, než Webu, kde je lokalizace dokumentů pevně spojená s jejich identitou \autocite[29]{Pam1995}. Zatímco server se stará o distribuci dokumentů po síti, autorizaci uživatelů a poskytování dat klientským aplikacím (včetně evidence honorářů a dalších poplatků), klientské aplikace poskytují různé způsoby vizualizace a práce s hypertextem, případně s různými souborovými formáty (obdobně jako systémy Intermedia a Hyper-G, které se skládají z různých specializovaných aplikací; \pnoref{sec:intermedia} a \pageref{sec:hyperg}).
+
+% Xanadu měl zároveň poskytovat jednotné úložiště obsahu, bez ohledu na souborový formát.
+% To je rozdíl oproti Webu, kde Berners-Lee explicitně předpokládal, že vzniknou webová rozhraní k existujícím zdrojům dat (\pnoref{p:web:compat}). 
+Nelson nevylučuje, že by mohly existovat externí systémy kompatibilní s protokolem Xanadu, ale bez garance výhod oficiálního úložiště Xanadu \autocite[2/50--2/51]{LitMachines}. Zároveň připouští, že pro účely vyhledávání by bylo zapotřebí Xanadu rozšířit o tzv. \enterm{middle-end} funkce\footnote{Software který by byl „mezi“ klientskou aplikací a serverem, případně by se mohlo jednat o serverový software, který by k systému přistupoval jako klient.}
+\autocite[4/72]{LitMachines}. Zde by pak teoreticky byl prostor pro vznik specializovaných úložišť. Roger Gregory se domnívá, že tento přístup je i chybou v návrhu Xanadu: \textquote[{\autocite{Gregory2010}}]{Domnívali jsme se, že bude jen jeden způsob jak ukládat data \textelp{} a mnoho různých způsobů, jak se na ně dívat, spousty různých rozhraní. Ukázalo se, že je to ve skutečnosti naopak: je jen jeden způsob jak se dívat na data, skrze prohlížeč, a nepřeberné množství nekompatibilních způsobů jak ukládat data -- databáze, \textelp{} tiskové formáty, Microsoft Word, který neumí přečíst soubory \textins{z jiné verze} Wordu...}. Nelson však nic takového ve své vizi nepředpokládal. Z jeho hlediska se jedná o selhání vývoje počítačových systémů, které uvěznily uživatele v uzavřených souborových formátech svázaných s paradigmaty hierarchie a simulace papíru \autocite{trollout}.
+
+Dokumenty v Xanadu by měly být imutabilní, tj. dokument identifikovaný konkrétní adresou se nezmění. Revize a alternativní verze dokumentu získají novou, unikátní adresu. Nová verze dokumentu však ukládá pouze změny oproti předchozí verzi dokumentu \autocite[2/13--2/15]{LitMachines}. Celý větvící se strom alternativních verzí je možné procházet, verze mezi sebou porovnávat nebo se mezi nimi odkazovat \autocite[3/3]{LitMachines}. Tato vlastnost byla jedním z Nelsonových původních cílů (\pnoref[viz Proustovská editace textu,]{p:ht:proust}) a byla částečně realizovaná v projektu OSMIC (\pnoref{sec:osmic}).
+
+Permanentní dostupnost dokumentů je sice technicky řešená distribuovaným úložištěm, záruku by však měly zajistit smluvní vztahy mezi poskytovateli Xanadu (tj. provozovatelé serverů) a uživateli. Jak je popsáno \pnoref[na]{p:litmachines:business}, uživatelé musí dokument explicitně zveřejnit a nemohou jej snadno stáhnout.
+
+\subsection{Transkluze obsahu}
+\label{sec:xanafeat:translc}
+
+Fundamentální vlastností Xanadu je, že každá informace by měla v systému existovat právě jednou. Existující informace, kus jiného textu nebo multimediálního objektu, může být vložená do jiného dokumentu, aniž by vložená data byla zkopírovaná. Ve starších textech a v knize \enterm{Literary Machines} Nelson označuje tuto vlastnost jako inkluzi a popisuje jí jako „okno do jiného dokumentu“ \autocite[2/32]{LitMachines}. Jak vysvětluje v předmluvě k poslední edici téže knihy, později začal používat termín „transkluze“ který mnohem lépe vystihuje podstatu tohoto konceptu \autocite[Preface to the 1993 Edition]{LitMachines}. Rozdíl je patrně ten, že zatímco termín „inkluze“ evokuje vložení či zahrnutí jednoho dokumentu do jiného, předložkou „trans-“ se Nelson snaží upozornit na využití textu \emph{napříč} různými dokumenty. Příkladem transkluze jsou pro Nelsona „asociativní cesty“ v Memexu (\pnoref{sec:memex}), kde fyzicky totožný snímek mikrofilmu může být použitý v různých cestách \autocite{Nelson:XanaduSpace}.
+
+Ve starším návrhu xu88 se dokument skládá jak z originálních dat („nativní byty“), tak z virtuálních dat, které se načtou z jiných dokumentů (\pnoref{p:litmachines:docs}). Pozdější návrh \enterm{Transliterature} pak explicitně rozděluje zdrojový obsah od dokumentů s transkludovaným obsahem (\pnoref{p:xana:flinks}). Tzv. \enterm{Xanadoc} obsahuje pouze seznam referencí na zdrojové dokumenty (EDL), ze kterých se sestaví finální text.
+
+Nepřímá práce s obsahem skrze transkluzi má několik výhod. Je možné snadno citovat či upravovat cizí dokumenty při zachování jejich původní verze a s implicitní vazbou na původní kontext. Je možné kombinovat různé typy souborů, například text a multimédia.\footnote{Na současném Webu mohou být v HTML dokumentech zobrazené obrázky či videa které jsou však v samostatných souborech, to je opět princip transkluze (srovnání transkluze na Webu je popsané \pnoref[na]{sec:web:trancl}).}
+Transkluze je také základním předpokladem pro transcopyright který, jak je popsáno dále, rozděluje autorské honoráře mezi autory všech zdrojových dokumentů, ze kterých byl výsledný dokument sestaven.
+
+\subsection{Plovoucí odkazy a vizualizace vazeb}
+
+Základní funkce hypertextových odkazů v Xanadu je podobná, jako u jednoduchých jednosměrných odkazů na Webu: odkazy umožňují uživateli „skočit“ do jiného dokumentu \autocite[2/26]{LitMachines}. V Xanadu však odkazy mohou ukazovat na konkrétní rozsahy bytů v textu, což umožňuje mnohem preciznější odkazování a širší využití odkazů. Je tak možné odkázat na konkrétní myšlenku či parafrázovaný text v cílovém dokumentu. Odkazy mohou být různých typů a podle toho jinak vypadají. Může se například jednat o poznámku pod čarou nebo komentář k dokumentu. Odkazy také plní funkci formátování a strukturování textu („efekty“ -- \pnoref{p:xana:flinks}).
+
+Původ této koncepce odkazů pravděpodobně pramení z technického popisu Xanadu z roku 1971, kde Nelson zdůrazňuje oddělení čistých dat od formátování do tzv. řídících proudů (\pnoref{p:evol:streams}). V návrhu Xanadu xu88 jsou odkazy uložené v separátní sekci dokumentu vedle samotného obsahu \autocite[4/6]{LitMachines}. V pozdějších implementacích Xanadu jsou odkazy uložené v samostatných souborech (\enterm{xanalinks}), adresovaných ze souboru Xanadoc v seznamu referencí ODL (\pnoref{sec:xanadoc}). Od nejstaršího návrhu je však patrné, že odkazy slouží především jako transformační vrstva, která „překryje“ text po sestavení transkluzí \autocite{xanasimp}.
+
+Nepřímost odkazů a jejich samostatnost nabízí podobné výhody, jako transkluze. Existující dokumenty je možné doplnit o odkazy na poznámky nebo korekce, případně vytvořit nové, alternativní vazby. Odkazy jsou obousměrné, takže je možné zjistit, které dokumenty se na ně odkazují, případně jaké komentáře zanechali ostatní čtenáři. Tuto flexibilitu práce s odkazy umožňovaly i jiné systémy, jako Intermedia (\pnoref{sec:intermedia}). Xanadu však má ambice tuto funkcionalitu poskytnout globálně. 
+Transkluze a obousměrné precizní odkazování pak především umožňují vizualizaci vazeb mezi dokumenty (\enterm{Parallel Textface}) \pnoref[popsanou na]{p:dm:paraviz}.
+
+
+% obsah je oddělený od formy
+% Transkluze proto předpokládá oddělení obsahu od formy a struktury, protože každý kus textu může nést v dokumentu jiný sémantický význam. Formátování a struktura může „překrýt“ obsah dokumentu, jak je naznačené v pozdějích implementacích formátu Xanadoc. %TODO odkaz.
+% Jak Nelson vysvětluje v článku \citetitle{Nelson1997a} \autocite*{Nelson1997a}, spojení struktury s obsahem je také jedním z největších nedostatků značkovacích jazyků jako HTML nebo XML. 
+
+% % remixování dokumentů
+% Transkluze společně s funkčním systémem provizí podporuje remixování obsahu. Pokud se uživatel rozhodne vytvořit alternativní verzi cizího dokumentu, například v ní upraví jenom pár slov, většina původního dokumentu zůstane zachovaná a čtenář má možnost porovnat alternativu s originálem.
+
+% lost in hyperspace?
+
+
+\subsection{Systém provizí, transcopyright}
+\label{sec:transcopyright}
+
+Pro Nelsona je důležitá dlouhodobá udržitelnost celého systému. Již rané návrhy Xanadu počítaly s tím, že uživatelé budou platit poskytovateli za používání systému a autorům za přístup k jejich pracím \autocite{Nelson1972a}.
+Později Nelson upozorňuje na prohlubující se polarizaci kolem duševního vlastnictví, způsobenou rozvojem digitálními médii. Na jedné straně jsou odpůrci copyrightu, kteří by si přáli, aby všechny informace byly zadarmo. Na straně druhé jsou obhájci copyrightu, kteří by „nejraději vše uzamkli“ a neustále řeší, jak zabránit porušování autorských práv \autocite{xanalogical}.
+Namísto otázky „Jak zabránit porušování copyrightu?“ Nelson pokládá otázku: „Jak umožnit použití obsahu v jiných kontextech?“ \autocite{Transcopyright}. Jeho řešením je \enterm{transcopyright}. Koncept, který má podpořit opětovné použití chráněných děl a zároveň zajistit, aby autoři dostali zasloužený honorář.
+
+Transcopyright je úzce spojený se systémem transkluze. Pokud si čtenář koupí přístup k určitému dokumentu, částka se rozdělí poměrně mezi všechny autory, jejichž materiály byly použity. Čtenář platí konstantní částku za každý přenesený byte autorům zdrojových dokumentů. Jak demonstruje prototyp XanaViewer \pnoref[na]{p:impl:xanaviewer}, čtenář se může explicitně rozhodnout, zda si konkrétní transkludovaný obsah koupí.
+
+Autoři jsou tak motivováni poskytovat svá díla k použití v dalších dokumentech. Pro čtenáře je nákup dokumentů komfortní a levný -- Nelson předpokládá, že by se jednalo o „mikroplatby“ kolem tisíciny centu za byte\footnote{Platba měřená byty je univerzální i pro binární dokumenty, např. obrázky. Na druhou stranu měření délky textu na byty znamená, že texty ve většině jazyků by byly dražší: například běžně používané kódování UTF-8 potřebuje tři byty pro reprezentaci jednoho znaku s diakritikou.}
+\autocite[5/11]{LitMachines}. Čtenář se stává stálým vlastníkem bytů z dokumentu, podobně jako když si koupí knihu, a může si pořídit zálohu pro osobní potřebu \autocite{Transcopyright}.
+
+\label{p:xanadu:transc:infring}
+Nelson zdůrazňuje, že tento koncept sice není neprůstřelný, ale i nejdokonalejší systém ochrany obsahu je možné obejít \autocite{Tpub-Objections}. Uživatel sice může zakoupený text šířit dál, ale dokument přijde o všechny hypertextové vazby on-line dokumentu \autocite[2/48]{LitMachines}. Uživatel by zároveň mohl zveřejnit kopii dokumentu jako své dílo, aby získal honorář. Nelson souhlasí, že to by mohlo fungovat, ale jen do té doby, než by na sebe nepoctivec přitáhl pozornost \autocite[2/60]{LitMachines}. V takovém případě by pravděpodobně zasáhl poskytovatel Xanadu, se kterým uživatel uzavřel (a porušil) smlouvu.
+
+
+% mikroplatby
+
+% udržitelný model
+
+% -překlady
+
+% požadavky: http://xanadu.com.au/general/faq.html
+
+    % Paralelní prohlížení dokumentů
+    % Trainspointing window
+    %     Vizualizace propojení dokumentů
+    %     vs. simulace papíru
+    % Transkluze obsahu
+    %     princip obousměrných odkazů
+    %     Texty jsou vlastně seznam odkazů 
+    % Linkování všeho se vším
+    % Verzování a permanence obsahu
+    %     odkazování -- tumblerspace
+    % Transcopyright
+    %     mikroplatby za transkludovaný obsah
+    % (Read/Write?)
+
+% Nedostatky návrhu
+
+% Lost in Hyperspace [38]Conklin1987
+
+% Protichůdnost transcopyrightu a permanence informací
+
+% Centralizace
+
+\section{Shrnutí}
+\label{sec:xanadu:summary}
+
+% OpenXanadu a XanaViewer představují určitý kompromis v Nelsonově původním návrhu. Nelson se zaměřuje především na
+% Ačkoli se může zdát, že Web realizoval Nelsonovu vizi, není tomu tak zcela. Řada vlastností Xanadu nebyla na Webu realizovaná -- nebo není realizovatelná. Dokazují to i Nelsonovy poslední prototypy, které využívají Webové technologie pro přenesení alespoň některých vlastností Xanadu na Web. V další kapitole jsou popsané projekty, které se snaží kompenzovat konkrétní nedostatky Webu. Společně by tyto porjekty mohly vést k nové realizaci projektu Xanadu nad současným Webem.
+
+Ačkoli systém Xanadu prošel evolucí návrhu, hlavní cíle a klíčové myšlenky byly součástí Nelsonovy vize prakticky od počátku. Belinda Barnet k životnosti Xanadu dodává: \textquote[{\autocite[89]{Barnet2014}}]{Na rozdíl od Bushova Memexu se lidé stále pokouší implementovat \textins{Xanadu} tak, jak bylo původně navrženo. To dokazuje jeho význam: technické specifikace nejsou vyhlášené svou trvanlivostí, ale specifikaci Xanadu se daří už přes padesát let}.
+
+Z Nelsonových textů je patrné, že se snažil popis Xanadu přizpůsobit aktuálním možnostem počítačů. Rané dokumenty řeší problémy s interaktivní editací textu (\pnoref[JOT,]{sec:impl:jot}) a s organizací dat na disku (\pnoref{p:evol:streams}). Xanadu je také popsáno jako kompletní operační systém (\pnoref{p:dm:xanadu}).
+S rozvojem osobních počítačů a operačních systémů byl návrh přepracován tak, aby fungoval jako konvenční aplikace na architektuře klient~/ server. To vedlo ke vzniku referenční implementace xu88 (\pnoref{sec:impl:green}). Když se Web prosadil jako dominantní systém\footnote{K Nelsonově velké nelibosti \autocite[viz][]{Nelson:buyin}.},
+Nelson jej v dalších návrzích využil pro distribuci dokumentů, čímž Xanadu redukoval převážně na klientskou část (\pnoref{sec:transquoter}). Sofistikované datové struktury pro optimální distribuci dat byly nahrazené jednoduchými textovými soubory umístěnými na webových serverech. Aktuální prototypy pak demonstrují Xanadu jako čistě webovou aplikaci (\pnoref{sec:xanadoc}). Tato adaptace návrhu se neobešla bez ústupků: Web nesplňuje zdaleka všechny cíle Xanadu. Následující kapitola blíže konfrontuje záměry Xanadu s návrhem Webu a nabízí možná řešení těchto ústupků.

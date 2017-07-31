@@ -1,0 +1,63 @@
+Pojem „hypertext“ bývá často chápán jako synonymum Webu. Co jiného jsou podtržené odkazy, které nás po kliknutí přenesou na nový dokument? Koneckonců, webové technologie mají slovo „hypertext“ v názvu: HTML (\enterm{HyperText Markup Language}) a HTTP (\enterm{HyperText Transfer Protocol}). I přes využití stejné terminologie není Web ekvivalent hypertextu, pouze jedna z jeho mnoha aplikací \autocite[xx]{Barnet2014}.
+
+Theodor Holm Nelson vymyslel slovo hypertext v šedesátých letech a jeho vize byla výrazně širší. Nelson si pod hypertextem představoval sofistikované elektronické médium umožňující nové formy práce s textem, které na papíře nejsou možné. V Nelsonově vizi měl hypertext sloužit k vytváření viditelných vazeb mezi dokumenty a ke komplexnímu porovnávání alternativních verzí těchto dokumentů. Dále měl hypertext umožnit „natahovat“ texty v různých rozměrech a pracovat s multimediálními objekty stejně snadno, jako s textem.
+Praktickou aplikací Nelsonova konceptu hypertextu byl projekt Xanadu®\footnote{\emph{Xanadu} je registrovaná ochranná známka Theodora H. Nelsona v USA. Nelson si explicitně přeje, aby tato informace byla v textech o Xanadu alespoň jednou zmíněna \autocite{TN:TBL}.}. Tento projekt měl být globální systém hypertextové literatury, \textquote[{\autocite[1/30]{LitMachines}}]{magické místo literární paměti}, kde uživatelé rozvíjí, revidují, anotují, citují a remixují rostoucí hypertextový korpus. 
+I přes velkou snahu se tuto vizi nepodařilo Nelsonovi realizovat.
+
+Projekt Xanadu existuje přes padesát let. Během této doby procházel návrh systému neustálým vývojem, přestože jeho hlavní cíle zůstaly stále stejné. O~projektu koluje mnoho mýtů a existuje na něj celá řada protichůdných názorů. Zatímco někteří autoři tvrdí, že Nelsonův návrh je příliš komplikovaný, aby byl realizován \autocite[17]{McConaghy2015}, jiní chápou jako jeho realizaci Web \autocite{wikisofia:TedNelson}.
+% Nelson nesouhlasí ani s jedním z těchto tvrzení \autocites[viz][23]{xanalogical}{Nelson:buyin}.
+Z populárního článku o historii Xanadu \citetitle{Wolf1995} \autocite{Wolf1995} lze pro změnu získat dojem, že Nelsonův projekt byl na začátku devadesátých let mrtvý. Nelson označil autora článku za nájemného zabijáka (\pnoref{sec:xanadu:curse}) a za posledních dvacet let představil několik prototypů Xanadu. Tyto kontrasty kolem Xanadu pro mě byly motivací dozvědět se o projektu více.
+
+\section{Cíl práce a výzkumné metody}
+
+Cílem mé práce je popsat vlastnosti systému Xanadu a kriticky zhodnotit možnosti, přínosy a limitace jejich přenesení do kontextu současného Webu.
+V práci se snažím odpovědět na následující otázky:
+
+\begin{itemize}
+\item Jak se liší Nelsonem navržené vlastnosti Xanadu od vlastností současného Webu?
+\item Jakým způsobem lze o tyto vlastnosti současný Web obohatit?
+\end{itemize}
+
+Na projekt Xanadu je v této práci nahlíženo ze dvou úhlů: jako na soubor abstraktních návrhů a jako na sérii dílčích softwarových prototypů. Analýza Nelsonových návrhů je ukotvená v historickém kontextu vybraných hypertextových systémů. Na základě identifikovaných vlastností a cílů systému Xanadu jsem provedl komparativní analýzu, v rámci které porovnávám zmíněný systém s Webem. K požadovaným vlastnostem Xanadu jsou přiřazeny odpovídající webové standardy a protokoly. Z výsledků komparace je syntetizován návrh, který přináší vlastnosti Xanadu do prostředí Webu.
+
+Práce identifikuje následující hlavní vlastnosti systému Xanadu: stálá archivace dokumentů a jejich verzí, opětovné použití a „remixování“ obsahu (\emph{transkluze}), vytváření viditelných, obousměrných spojení mezi dokumenty a provizní systém mikroplateb s alternativním modelem autorských práv (\enterm{transcopyright}).
+Na základě aplikace těchto vlastností v prostředí Webu navrhuji následující řešení: \enterm{peer-to-peer} technologie pro stálou archivaci a verzování dokumentů (permanentní Web), standard webových anotací pro vytváření viditelných spojení mezi dokumenty a technologie virtuálních, kryptografických měn pro mikroplatby a evidenci autorských práv (skrze \enterm{blockchain}).
+V rámci mnou navržených řešení zohledňuji Nelsonovu webovou aplikaci XanaViewer a specifikaci formátu Xanadoc. Tyto dvě technologie umožňují využít některé vlastnosti Xanadu ve webovém prohlížeči.
+Závěrem mé analýzy je, že syntéza výše zmíněných technologií by mohla vést k úspěšné realizaci Xanadu splňující většinu vlastností, které definoval Nelson. Zároveň zmiňuji limitace a problémové aspekty navrhovaných technologií.
+
+V představených implementacích Xanadu jsem se zaměřil pouze na projekty které vznikly pod vedením Nelsona nebo Xanadu Operating Company. Další nezávislé projekty jsou popsané na stránkách \citetitle{Hyperworlds} \autocite{Hyperworlds}.
+Z~důvodu omezeného rozsahu práce jsem do návrhů řešení pro realizaci Xanadu v prostředí Webu zahrnul pouze webové standardy a významné \enterm{open-source} projekty se zveřejněnými specifikacemi a volně dostupným zdrojovým kódem. Nejsou zohledněny komerční služby závislé na jediném dodavateli. Rozsáhlejší analýza obou těchto oblastí by mohla být předmětem samostatných textů.
+
+\section{Struktura práce}
+
+Práce je členěná do tří kapitol. První kapitola představuje některé hypertextové systémy či vize takových systémů společně s motivací jejich tvůrců. Cílem je ukotvit rané koncepce hypertextu v kontrastu s Webem a poukázat na úzkou provázanost vývoje hypertextových systémů s rozvojem počítačů.
+
+Druhá kapitola se věnuje projektu Xanadu. Na základě analýzy Nelsonových textů popisuje evoluci návrhu Xanadu, hypertextu a příbuzných konstruktů. Následně představuje konkrétní implementace a prototypy Xanadu, které posuzuje z hlediska funkčnosti. Závěrem kapitola shrnuje konkrétní vlastnosti a cíle projektu Xanadu, které slouží jako východisko pro třetí kapitolu.
+
+Třetí kapitola porovnává Web a Xanadu, výhody i nevýhody návrhu obou systémů. 
+Na základě popisu vlastností Xanadu a jejich srovnání s vlastnostmi dnešního Webu určuje klíčové nedostatky Webu a popisuje možná řešení tak, aby se přiblížily záměrům Xanadu.
+
+\section{Vymezení konceptu hypertextu}
+
+Nelson popsal několik forem hypertextu které zmiňuji \pnoref[na]{p:ht:forms}, v této práci se zaměřuji především na jednoduchý, nespojitý hypertext (\enterm{chunk-style hypertext}). Jeho hlavní funkce spočívá v propojení „kousků“ informací skrze asociativní odkazy. \Textcite[7]{Barnet2014} ve své definici upřesňuje, že propojované informace mohou být písemného i obrazového charakteru a nejlépe se s~nimi pracuje na obrazovce. Chápání hypertextu jako primárně elektronického média koresponduje s Nelsonovou původní definicí z roku 1965, kde vymezuje hypertext jako komplexně propojený korpus, který nelze prezentovat na papíře \autocite[96]{Nelson1965}. Ani jedna z těchto definic nevylučuje Bushův mechanický stroj Memex, protože v jeho případě je text promítaný z mikrofilmu na obrazovku.
+
+% Na základě těchto definic vycházím z  na hypertext jako na médium, které umožňuje vytvářet asociativní vazby mezi diskrétními kousky informací. Tato definice však není dostatečná pro porovnání hypertextových systémů mezi sebou. 
+V této práci mezi sebou porovnávám hypertextové systémy, které takové definice splňují ze své podstaty. Proto se zaměřuji spíše na technické aspekty hypertextových systémů: jaké nabízí funkce pro práci s hypertextem a jakým způsobem je implementují.
+
+% \begin{quoted}{\autocite[7]{Barnet2014}}
+%Written or pictorial material interconnected in an associative fashion, consisting of units of information retrieved by automated links, best read at a screen.
+% Písemný nebo obrazový materiál propojený asociativním způsobem, skládající se z jednotek informací získané skrze automatizované odkazy, nejlépe čitelný na obrazovce.
+% \end{quoted}
+
+Čtenář může být obeznámen s pojmy „kybertext“ a „ergodická literatura“ které jsou používané zejména v literárně zaměřené teorii hypertextu. Espen J. Aarseth těmito pojmy popisuje díla, která pro průchod textem vyžadují po čtenáři „netriviální úsilí“ \autocite[1]{Aarseth1997}. Aarseth rozlišuje kybertext od hypertextu v tom smyslu, že hypertext je možné číst v libovolném pořadí, zatímco kybertext musí mít interní pravidla podle kterých je možné jej „úspěšně číst“ \autocite{csmt:hypermedia}. Problematiku ergodické literatury zmiňuji v souvislosti se systémem Storyspace \pnoref[na]{sec:storyspace}, blíže se jí v této práci nezabývám.
+% Pro Nelsona je navíc systém, který čtenáři vnucuje specifická pravidla pro čtení antitezí,,,
+
+\section{Přehled zdrojů}
+
+Pro základní orientaci ve zkoumané oblasti jsem vycházel z knihy \citetitle*{Barnet2014} \autocite{Barnet2014}. Autorka zde popisuje historii několika významných hypertextových systémů doplněné o unikátní rozhovory s jejich tvůrci. Druhým přehledovým zdrojem byla kapitola \enterm{The Web That Wasn't} knihy \citetitle*{Glut} \autocite[183--229]{Glut}, která byla také inspirací pro název mé práce. Autor mezi vizionáře hypertextových systémů zahrnul i často opomíjeného Paula Otleta, který popsal vizi interaktivní „televizní knihy“ několik let před Vannevarem Bushem. Kniha \citetitle{Markoff2005} \autocite{Markoff2005} líčí příběh Douglase Engelbarta, který vytvořil významný systém \enterm{Augment/NLS}. Markoff zde také popisuje okolnosti vzniku průmyslu osobních počítačů v šedesátých a sedmdesátých letech v Kalifornii, které ovlivnily i vývoj hypertextových systémů. Diplomová práce \citetitle{Muller-Prove2002} \autocite{Muller-Prove2002} mě upozornila na některé novější hypertextové systémy, které jsem zahrnul do první kapitoly.
+
+U popisu většiny hypertextových systémů vycházím z primárních textů jejich autorů. S ohledem na téma práce jsem věnoval velkou pozornost textům Theodora Nelsona, nezbytných pro pochopení evoluce návrhu Xanadu. Pro~práci byla klíčová publikace \citetitle{LitMachines} \autocite{LitMachines}, představující uceleně Nelsonovu vizi.
+V rámci popisu prototypů Xanadu jsem otestoval příslušné aplikace. 
+% \footnote{Navigace v Nelsonových textech je obtížná. Nelson se ve svých textech často odkazuje na nezveřejněné články a }
+
+Ve třetí kapitole jsem vycházel z doporučení konkrétních webových standardů konsorcia W3C a dokumentů RFC, které kodifikují standardy používané na internetu. V případě nestandardizovaných open-source technologií jsem použil jejich technické specifikace, zejména bílé knihy systémů IPFS \autocite{IPFS} a Filecoin \autocite{Filecoin2017}.

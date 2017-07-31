@@ -1,0 +1,273 @@
+\chapter{Web, který může být}
+\label{ch:3}
+
+Ze všech hypertextových systémů se stal dominantním Web, jehož návrh byl mnohem méně robustní. Tato kapitola se věnuje výhodám a nedostatkům Webu oproti návrhu Xanadu. Pro jednotlivé nedostatky jsou představena možná řešení v podobě nových technologií a standardů. V závěru kapitoly je nastíněno, jak by syntéza těchto technologií mohla Web přiblížit Nelsonově vizi.
+
+\section{Xanadu kontra Web}
+\label{sec:xanavsweb}
+
+Berners-Lee představil Nelsonovi svůj koncept hypertextu v roce 1992, ale Nelson jej považoval za příliš jednoduchý. \textquote[{\autocite{trollout}}]{Pak už jsem jen zděšeně pozoroval, jak tento plytký systém, který řeší pouze malou část z našeho záměru (a to kompletně špatně), ovládl celý svět}. Podle Nelsona má poloviční zásluhu na úspěchu Webu prohlížeč Mosaic \autocite{trollout}. Autoři Mosaicu, Marc Andreessen a Eric Bina, se zaměřili na implementaci triviálních, avšak efektních funkcí, jako podporu multimédií, barev a různých písem \autocite[71]{Berners-Lee1999}. Nelson shrnuje svojí kritiku Webu následovně:
+
+\begin{quoted}{\autocite{trollout}}
+Proč nemám rád Web? Nemám rád jeho \textelp{} důraz na vzhled. Jeho obdélníkovou simulaci papíru s cenným prostorem \textelp{}, který si pronajali inzerenti. Jeho odkrytou a vynucenou hierarchii. Jeho netypované, jednosměrné odkazy existující pouze uvnitř dokumentu. \textelp{} Web umožňuje vytvářet pouze triviální odkazy. Není zde nic, co by podporovalo důkladnou anotaci nebo studium. A samozřejmě zde není žádná možnost transkluze.
+\end{quoted}
+
+Důvod, proč Nelson označuje Web za plytký a povrchní systém, může také souviset s odlišným přístupem k implementaci. Nelson se svým týmem strávil řadu let hledáním optimálního technického řešení, které by obsáhlo všechny plánované funkce: \textquote[{\autocite[0/5]{LitMachines}}]{Zatímco ostatní navrhují systémy, které toho umí méně, a pak přidávají další funkce, my jsme navrhli \textins{Xanadu} jako jednotnou strukturu, která zvládne vše. To sice zabere více času, ale vede to k čistějšímu návrhu}. Berners-Lee naproti tomu vytvořil minimální systém pragmaticky přizpůsobený pro heterogenní prostředí organizace CERN (\pnoref{sec:www}). Obtížnější problémy, jako obousměrné odkazy nebo permanentní dostupnost dokumentů, Web neřešil.
+
+Nelson plánoval, že by rozvoj Xanadu byl řízený centrálně a provoz systému by zajišťovali licencovaní poskytovatelé (\pnoref{p:litmachines:business}). Naproti tomu Berners-Lee usiloval o volnou dostupnost Webu: každý může provozovat vlastní webový server bez souhlasu centrální autority (\pnoref{p:web:compat}). Po představení první implementace ponechal Berners-Lee „žít Web vlastním životem“, na rozdíl od Nelsona, který chtěl direktivně řídit vývoj Xanadu podle své vize a technických návrhů. Web byl inovován živelně ze strany vývojářů jednotlivých prohlížečů,\footnote{To vedlo ve druhé polovině devadesátých let k „válce prohlížečů“ mezi firmami Microsoft a Netscape. Obě firmy přidávaly nové, nekompatibilní funkce do jazyka HTML ve snaze získat si vývojáře a tím pádem i uživatele, kterým se webové stránky zobrazovaly „správně“ pouze v jednom z prohlížečů \autocite[více viz][]{Hoffmann2017}.}
+kteří nakonec začali spolupracovat na inovaci webových standardů pod záštitou konsorcia W3C \autocite{W3C:WebHistory}.
+
+Jak tvrdí Clay \textcite{Shirky1998}, trivialita a nedokonalost původního návrhu Webu umožnila rapidní rozvoj a adaptaci technologie pro potřeby uživatelů. Robustní systémy vyvíjené centrálně, jako WAIS či Gopher (a Xanadu), zahrnovaly od počátku řadu funkcí, avšak jejich následný vývoj rostl logaritmicky. Web sice začal jako mnohem slabší systém, jeho rozvoj však probíhal exponenciálně. Shirky nabízí následující přirovnání: \textquote[{\autocite[47]{Shirky1998}}]{Je to podobné jako dinosauři versus savci -- savci nakonec vždy vyhrají}. 
+Díky rozvoji a adaptabilitě webových technologií se z Webu stala univerzální aplikační platforma, která nahradila proprietární, centrálně vyvíjené technologie, jako Flash a Java applety\footnote{Applet je program, který běží v kontextu jiné aplikace. V prostředí Webu se nejčastěji jedná o tzv. zásuvné moduly (\enterm{plug-in}) jako např. Flash, Silverlight nebo Java, které poskytují sofistikovanější funkce než standardní webové technologie \autocite{wiki:Applet}.} \autocite{FlashDeath}.
+Nakonec exponenciální rozvoj Webu umožnil Nelsonovi přenést návrh Xanadu do prostředí webového prohlížeče (\pnoref{sec:xanadu:summary}).
+
+\section{Přenesení vlastností Xanadu na Web}
+
+Pokrok webových technologií se výrazně dotkl zejména webových prohlížečů. Rozvoj jazyka JavaScript umožnil tvorbu sofistikovaných aplikací, které uživatelé nemusí instalovat a vývojáři je mohou průběžně aktualizovat \autocite[7]{Web2.0}. V současnosti je možné vyvíjet webové aplikace, které fungují bez internetového připojení, což je důležitá vlastnost zejména na mobilních zařízeních \autocite[tzv. \enterm{Progressive Web Apps}, viz][]{RussellPWA}. 
+
+I přes veškerý technický pokrok však jádrem Webu zůstává stejně omezený model hypertextu, který neprošel významnější změnou. Nedostatky, které Andrew Pam vytýkal Webu v příspěvku \citetitle{Pam1995} v roce \cite*{Pam1995} jsou stejně platné i dnes. Konkrétně se jedná o omezené možnosti distribuce a zálohování obsahu, absence verzování dokumentů, absence obousměrných odkazů, omezená podpora transkluze a nesystematický přístup k autorským právům (tj. absence transcopyrightu). Pochopitelně se jedná o vlastnosti, které řešil návrh Xanadu.
+
+Následující část kapitoly konfrontuje tyto nedostatky Webu s vlastnostmi Xanadu popsanými v předchozí kapitole \pnoref[na]{sec:xanafeat} a představuje současné projekty, které by mohly dílčí problémy vyřešit. Některá řešení vyžadují součinnost webového prohlížeče ať už se jedná o podporu nových webových standardů nebo specializovaných doplňků. Jiná řešení představují novou, robustnější architekturu pro Web. Zohledněný je i aktuální Nelsonův návrh Xanadu \pnoref[popsaný na]{sec:xanadoc}.
+
+\subsection{Perzistence a verzování dokumentů}
+
+\begin{quoted}{\autocite{LaFrance2015}}
+Web \textelp{} je fantasmagorie. Není to místo v žádném určitém významu tohoto slova. Není to repozitář. Není to knihovna. Je to neustále se měnící slepenec věčné novoty.
+
+Nemůžete spoléhat na Web, ano? Je nestálý. Musíte to vědět.
+\end{quoted}
+
+Web neklade žádná omezení na publikaci materiálů, server si může zprovoznit každý -- přesně jak si Berners-Lee přál. To má však i stinnou stránku: Web nemá žádné mechanismy, které by garantovaly permanentní dostupnost obsahu. Problém vychází ze způsobu identifikace obsahu na Webu: identita dokumentu je totožná s jeho adresou (URI). Dokument na stejné adrese se může libovolně změnit bez zachování předchozí verze.\footnote{Systémy jako wiki automaticky ukládají každou verzi dokumentu, fungují však pouze v kontextu konkrétních webových stránek.} Pokud se změní lokace dokumentu, jedinou možností je uživatele přesměrovat -- \textcite{CoolUris} doporučoval adresy dokumentů vůbec neměnit (\citetitle{CoolUris}). Pokud však server nebo doména zanikne, zmizí i její obsah.
+
+Reakcí na nestálost Webu jsou webové archivy, například český Webarchiv nebo Internet Archive,\footnote{Viz \url{http://webarchiv.cz/} a \url{https://archive.org/}} který funguje od roku 1996 \autocite{LaFrance2015}. Roboti webových archivů periodicky prochází a ukládají dokumenty z celého Webu (nebo z jeho podmnožiny, jako v případě Webarchivu). Podobnou funkci plní služby, které vytvoří zálohu stránky na přání uživatele, například \href{https://archive.is/}{Archive.is} či \href{https://perma.cc/}{Perma.cc}. Archivy však nejsou definitivním řešením -- k některým dokumentům se roboti nedostanou, nebo dokument nezachytí v určité verzi. Navíc je dostupnost webových archivů zcela závislá na existenci organizací, které je provozují. Organizace mohou zaniknout nebo přijít o svá datová centra.
+
+\subsubsection{Distribuovaný, permanentní Web}
+
+Skutečné řešení tohoto problému by znamenalo změnit architekturu Webu. Zakladatel Internet Archive, Brewster \textcite{Kahle2015}, proto vyzývá k vytvoření decentralizovaného Webu, kde by distribuce obsahu nebyla závislá na dostupnosti jednotlivých serverů.
+
+Existuje několik projektů, které se tento koncept snaží uvést v praxi.
+Charakteristické pro ně je, že fungují na principu \enterm{peer-to-peer} sítí, kde každý klient může poskytovat data ostatním klientům bez existence autoritativního zdroje (serveru).\footnote{Tento model sdílení dat byl popularizovaný zejména protokolem BitTorrent.} 
+Konkrétním příkladem je projekt \enterm{InterPlanetary File System} (IPFS),\footnote{\url{https://ipfs.io/}} což je distribuovaný, peer-to-peer souborový systém \autocite{IPFS}.
+
+V IPFS je každý soubor identifikovaný svým obsahem pomocí unikátního otisku (\enterm{hashe}).\footnote{Hash je výstupem hashovací funkce, která převede vstupní data o libovolné délce na řetězec o konstantní délce (např. 256 bitů). Stejná data mají vždy stejný hash, pokud se však liší i v jediném bitu, výsledný hash bude zcela odlišný. Hashovací funkce se využívají mj. k ověření integrity souborů.}
+Identita souboru je tak nezávislá na jeho lokaci a systém garantuje, že obsah souboru zůstane neměnný. Pokud si klient vyžádá určitý soubor na základě jeho hashe, obdrží jej od ostatních klientů a sám jej může následně distribuovat. IPFS také umožňuje zaznamenávat informace o verzích podobně, jako systém pro správu verzí Git \autocite[3.6]{IPFS}. Hash nicméně není uživatelsky vstřícný pro ruční zadání adresy. Proto IPFS poskytuje jmenný prostor \enterm{InterPlanetery Name System} (IPNS),
+kde je možné použít existující domény podobně, jako na Webu. Každá doména může obsahovat záznam s hashem souboru v IPFS, který se použije jako aktuální verze dané stránky \autocite[3.7]{IPFS}.
+
+Vedle distribuovaného souborového systému počítá IPFS ještě s další vrstvou, která má zajistit dostatek celkové kapacity systému: \enterm{Filecoin}. Zatímco IPFS poskytuje základní infrastrukturu pro uložení dat, Filecoin přidává „algoritmické tržiště“ pro ukládání dat s vlastní virtuální měnou podobnou kryptografické měně Bitcoin \autocite{Filecoin2017}. Klienti platí Filecoin poskytovatelům za uložení jejich dat. Poskytovatelé musí klientům opakovaně dokazovat, že data mají stále uložená \autocite[10]{Filecoin2017}. Důkaz o dostupnosti dat je veřejně uložený v \enterm{blockchainu}\footnote{\enterm{Blockchain} je distribuovaná databáze skládající se ze zřetězených bloků. Každý blok obsahuje, kromě samotných dat, časový údaj a odkaz na předchozí blok (typicky hash bloku), což zaručuje konzistenci řetězu navazujících bloků. Blockchain se používá u většiny kryptografických měn pro ukládání transakcí \autocite{wiki:Blockchain}.}, takže ji mohou použít i ostatní klienti.
+
+Přestože Xanadu mělo také fungovat jako distribuovaný systém, za jeho provoz zodpovídali smluvní poskytovatelé. Výhodou IPFS a podobných technologií je, že si klienti na síti nemusí důvěřovat. K zapojení se do sítě stačí provozovat volně dostupný software. Filecoin pak řeší zpoplatnění úložiště, což by mělo zajistit motivaci pro hostování cizích dat a podpořit dlouhodobou udržitelnost sítě.\footnote{K dalším podobným projektům, které nabízí úložiště dat podpořené kryptoměnou patří \href{https://maidsafe.net/}{MaidSafe}, \href{https://storj.io/}{StorJ} a \href{https://swarm-guide.readthedocs.io/}{Ethereum Swarm}.}
+
+Zejména systém IPFS má ambice stát se permanentním Webem skrze interoperabilitu s existujícími systémy.
+V současnosti IPFS nabízí „přemostění“ souborů z peer-to-peer sítě na Web pomocí tzv. \enterm{gateway}.
+V budoucnu by měla být peer-to-peer konektivita implementovaná v prohlížeči pomocí webové technologie WebRTC \autocite[3.2]{IPFS}, takže pro přístup k permanentnímu Webu nebude zapotřebí specializovaný software. Raným úspěchem IPFS je jeho použití službou \enterm{Neocities}. Ta poskytuje, po vzoru ukončené služby GeoCities, volný prostor pro tvorbu webových stránek. Od roku 2015 jsou všechny stránky uživatelů také automaticky publikované do systému IPFS \autocite{NeocitiesIPFS}. S ohledem na distribuovanou povahu systému je tak jednodušší archivovat jednotlivé verze souborů, případně změnit jejich hosting, pokud by portál Neocities zaniknul. Distribuovaný Web je také přínosný pro webové archivy, protože mohou efektivněji ukládat soubory a detekovat změny na stránkách.
+
+\subsection{Precizní adresace obsahu a anotace}
+
+Standardy URI a HTML nabízí pouze omezené možnosti jak adresovat konkrétní část dokumentu, což komplikuje citování a anotování dokumentů či transkluzi obsahu. Součástí URI může být tzv. fragment, který odkazuje na prvek s konkrétním identifikátorem v dokumentu \autocite[3]{RFC3236} a klient jej může použít k zacílení prvku. V praxi prohlížeč zobrazí část stránky, na které se příslušný prvek nachází. Dokument musí tyto identifikátory prvků obsahovat, jinak lze dokument adresovat pouze jako celek. Proto Nelson považuje takové dokumenty za uzavřené -- není možné proniknout hlouběji do jejich obsahu. Nelson kritizuje HTML jako simulaci papíru, v tomto ohledu je však HTML horší než papír: u papírových dokumentů je možné odkázat alespoň konkrétní stránku. HTML dokumenty nemají fyzické limity, které by informace přirozeně rozdělily do menších, adresovatelných celků. Z tohoto hlediska je HTML krokem zpátky i oproti Memexu (\pnoref{p:memex:form}).
+
+Různé redakční systémy a generátory HTML často automaticky vkládají identifikátory pro jednotlivé nadpisy. Příkladem je adresace přes tzv. \enterm{Purple Numbers} navržená Christinou Engelbart podle systému Augment/NLS jejího otce \autocite{PurpleNumbers}. Jedná se o fialová čísla automaticky vložená do dokumentu, která umožňují adresovat jednotlivé odstavce bez manuálního zásahu autora. Všechny tyto metody jsou však pevnou součástí dokumentu a vyžadují součinnost autora. Zároveň nenabízí dostatečnou preciznost pro adresaci např. konkrétní věty v odstavci.
+
+Aktuální standardy rozšiřují možnosti fragmentů pro různé typy souborů. Například standard \enterm{Media Fragments URI} \autocite{W3C:MediaFrag} umožňuje adresovat konkrétní části multimediálních formátů (např. výřez obrázku nebo úsek videa). Standard \enterm{XPointer} umožňuje vybrat konkrétní element ve struktuře XML dokumentu \autocite[5]{RFC7303} a lze jej aplikovat i na HTML dokument. Pokud se však změní struktura dokumentu, fragment se může rozbít nebo začít ukazovat na zcela odlišnou část dokumentu.
+
+V rámci neziskového projektu \enterm{Hypothesis}\footnote{\url{https://hypothes.is}} vzniká univerzální anotační systém pro Web. Vzhledem k charakteru projektu je nutné řešit odolnou adresaci částí dokumentu tak, aby anotace „přežily“ změnu dokumentu a mohly fungovat napříč různými formáty. Anotace proto obsahuje několik indicií, včetně adresovaného textu samotného a jeho okolí \autocite{Hypo:Fuzzy}. Tento přístup je formalizovaný v aktuálním webovém standardu pro anotace \autocite[4]{W3C:AnnoModel}.
+
+Webové anotace řeší několik dalších nedostatků Webu.
+Každá anotace je samostatná entita, která může být uložená na jiném serveru, než anotovaný dokument. Tím pádem mohou čtenáři anotovat text bez zásahu do originálního dokumentu pomocí rozšíření v prohlížeči.
+Anotace může propojovat několik různých dokumentů mezi sebou a může být aplikovaná napříč různými formáty \autocite{Summers2013}.
+V praxi je třeba možné přenést anotace mezi HTML a PDF verzí článku na základě stejného identifikátoru DOI \autocite{Hypo:DOI}.
+
+Model anotací by mohl být rozšířený o další sémantické typy (například poznámky pod čarou, korekce) a ve výsledku by umožnil vizualizaci viditelných vazeb mezi dokumenty, o kterou Nelson v Xanadu usiloval (\pnoref{p:dm:paraviz}). Určitou nevýhodou současného standardu je, že anotace jsou uložené na konkrétním serveru, takže čtenář vidí pouze anotace od uživatelů stejného serveru a nikoliv z celého Webu. Na druhou stranu má čtenář možnost spravovat si anotace na soukromém serveru nebo je sdílet pouze v úzké skupině čtenářů.
+
+\label{p:xw:links:xanalinks}
+Webové anotace ve svém současném návrhu připomínají Nelsonovu implementaci plovoucích odkazů a \enterm{xanalinks} (\pnoref{sec:xanadoc}). Nelsonův koncept adresace obsahu je však výrazně jednodušší (adresa určuje pouze rozsah bytů), protože předpokládá, že se dokumenty nebudou měnit. Takovou garanci by mohl nabídnout dříve zmíněný systém IPFS, kde má každý soubor unikátní adresu danou svým obsahem.
+
+\subsection{Obousměrné odkazy}
+
+Berners-Lee si byl vědom výhod obousměrných odkazů. Čtenáře může zajímat, jaké další texty odkazují na aktuální dokument (\enquote{informace zadarmo}) a je snadnější předejít vzniku nefunkčních odkazů při přesunu dokumentu \autocite{HT:Topology}. Kde však má být informace o zpětných odkazech uložená, pokud ne v samotném cílovém dokumentu? Lokální hypertextové systémy si ukládaly informace o odkazech v centrální databázi (např. \pnoref[Intermedia --]{sec:intermedia} nebo \pnoref[Microcosm --]{sec:microcosm}). V Xanadu (podle návrhu) a Hyper-G má každý server lokální databázi příchozích odkazů, což vyžaduje \textquote[{\autocite[45]{Shirky1998}}]{masivní koordinaci, která omezuje celý systém}. \Textcite{HT:Topology} navrhoval zveřejněné dokumenty procházet samostatným programem, který by sestavil databázi zpětných odkazů.\footnote{Na tomto modelu stojí webové vyhledávače, jako například Google -- ten však informace o zpětných odkazech poskytuje pouze majitelům příslušných webových stránek \autocite{Cutts2007}.}
+
+Komunita webových vývojářů přišla s vlastním řešením pro podporu obousměrných odkazů. V roce 2002 byla publikována specifikace pro systém \enterm{Trackback} \autocite{wiki:Trackback}. Ten funguje následovně: když autor publikuje na svých stránkách nový příspěvek, jeho publikační systém upozorní všechny weby, které jsou v příspěvku zmíněny. Majitelé příslušných webů se mohou rozhodnout, zda zpětný odkaz zveřejní či ne. Pozdější projekty odstranily některé technické nedostatky původního systému a specifikace \enterm{Webmention} byla ustálena jako webový standard pro předávání zpětných odkazů mezi weby \autocite{W3C:Webmention}. Tyto systémy však mají dvě nevýhody. Jednak nefungují v případě publikace čistě statických stránek, protože server musí obsluhovat zápis příchozích odkazů. Druhak se majitel odkazovaného webu může rozhodnout příchozí odkazy nezveřejnit. To je zapotřebí například kvůli ochraně před spamem, ale čtenáři mohou být zatajeny i odkazy z textů, které s autorem jednoduše nesouhlasí.
+
+\label{p:xw:bidir:dht}
+Nelson se návrhem Xanadu pokoušel vytvořit médium, které podporuje pluralitu myšlení a předpokládá neustálý konflikt názorů (\pnoref{sec:xanadu:engelbart}). Proto také publikující autoři museli akceptovat, že nemají nad zpětnými odkazy kontrolu (\pnoref{p:litmachines:business}). V případě Webu by tak informace o zpětných odkazech musely být dostupné čtenářům mimo kontrolu majitelů jednotlivých webů. To by mohl řešit stejný model, jako u webových anotací. Informace o zpětných odkazech by byly uložené na neutrálním serveru třetí strany. Alternativně by si informace vyměňovali klienti mezi sebou prostřednictvím distribuované databáze na peer-to-peer síti. Ta by fungovala na bázi distribuované hashovací tabulky\footnote{\emph{Distribuovaná hashovací tabulka} (DHT) umožňuje vyhledat hodnotu na základě klíče napříč různými počítači. V praxi se používá mj. pro nalezení dat v distribuovaných sítích \autocite{wiki:DHT}.}, jenž by propojovala konkrétní dokumenty (na základě jejich hashe či URL) s entitami příchozích odkazů. Standard pro takovou technologii v současné době neexistuje, ale jedná se o přirozený důsledek separace odkazů ze struktury dokumentu, jaký poskytují webové anotace nebo Xanadoc.
+
+\subsection{Transkluze}
+\label{sec:web:trancl}
+
+Transkluze není Webu zcela cizí koncept, pouze se tento termín v kontextu Webu nepoužívá (častější je pojem \enterm{embedding}, tj. vkládání). HTML používá transkluzi pro vkládání multimediálních objektů \autocites[31]{Pam1995}[4.7]{W3C:HTML5}. V dokumentu je reference na externí soubor, například obrázek nebo video, který prohlížeč zobrazí jako součást dokumentu. Vedle toho je možné vložit dokument do jiného dokumentu prostřednictvím tzv. rámců (\enterm{iframe}, \cite[viz][4.7.6]{W3C:HTML5}), které jsou využívané pro vkládání obsahu z externích služeb, například videí z YouTube nebo reklamních bannerů.
+
+Nelson a \textcite[31]{Pam1995} přesto kritizují absenci transkluze na Webu.
+Technicky je sice možné transkludovat soubory z cizího serveru (tzv. \enterm{hotlinking}), bez předchozího souhlasu to ale není korektní a může se jednat o porušení autorských práv. Návštěvníci čerpají přenosovou kapacitu cizího serveru a jeho provozovatel může soubory smazat nebo nahradit. V systému Xanadu je naopak opětovné používání obsahu v cizích dokumentech povoleno a podporováno díky transcopyrightu.
+
+Webové technologie nepodporují snadnou transkluzi textu z dokumentu, což je dané mj. omezenými možnostmi precizní adresace obsahu. Rámec vloží vždy celý dokument a stejně tak není možné transkludovat pouze výřez obrázku nebo malou část videa.
+
+Existují tzv. „mashupy,“ což jsou zpravidla webové aplikace, které kombinují obsah z různých služeb \autocite[3]{Web2.0}.
+Například se může jednat o vizualizaci fotografií ze služby Instagram na mapách Google Maps, nebo porovnání ceny zboží v různých obchodech.
+Vytvoření takových mashupů zpravidla vyžaduje znalost programování a integraci specifických služeb.
+
+% Pro Nelsona je transkluze součástí tvorby a mechanismus, jak zachovat reference k původnímu autorovi či originálnímu kontextu. 
+Nelson v projektu XanaViewer demonstroval, jak může transkluze na Webu vypadat (\pnoref{p:impl:xanaviewer}). Aplikace, která běží v prohlížeči, dostane dokument s odkazy na zdrojové soubory. Z nich následně sestaví „mashup“ výsledného textu.
+
+Pro praktické nasazení má tento projekt jednu nevýhodu. Jak už bylo zmíněno u precizní adresace obsahu (\pnoref{p:xw:links:xanalinks}), Nelsonův návrh vyžaduje, aby se zdrojové dokumenty neměnily, protože text pro transkluzi ze zdrojového dokumentu je určený jako rozsah bytů. To ale má i své výhody. Současná implementace nejprve stáhne celý zdrojový dokument, který následně „ořeže“ na požadované fragmenty textu. Se znalostí rozsahu bytů by si klient mohl ze serveru vyžádat pouze konkrétní části dokumentu, a v případě zpoplatněného obsahu (viz dále), by zaplatil pouze ten.
+
+% obrázky, multimédia, server-side, iframes, mashupy, XSLT 2.0
+% https://www.xml.com/pub/a/2003/07/09/xslt.html
+% nejdále je Xanadoc
+% limitace: změna zdrojového dokumentu
+% 
+
+% \subsection{Remixování obsahu}
+
+% V souladu tezí plurality měl Xanadu umožnit všem uživatelům vytvářet alternativní verze ze všech existujících dokumentů \autocite[2/61]{LitMachine}. Webové prohlížeče však postupem času přišly o podporu editace obsahu, čímž 
+% Federated Wiki, Dat
+
+\subsection{Mikroplatby a transcopyright}
+
+\begin{quoted}{\autocite{Zuckerman2014}}
+% What we wanted to do was to build a tool that made it easy for everyone, everywhere to share knowledge, opinions, ideas and photos of cute cats. As everyone knows, we had some problems, primarily business model problems, that prevented us from doing what we wanted to do the way we hoped to do it. What we’re asking for today is a conversation about how we could do this better, since we screwed up pretty badly the first time around.
+Co jsme chtěli udělat byl nástroj, který by usnadnil všem a všude sdílet znalosti, názory, nápady a fotky roztomilých koček. Jak každý ví, měli jsme nějaké problémy, zejména s obchodním modelem, které nám zabránily udělat to, co jsme chtěli udělat tak, jak jsme doufali, že to uděláme. O co dnes žádáme je diskuze o tom, jak bychom to mohli udělat lépe, protože napoprvé jsme to docela zpackali.
+\end{quoted}
+
+V článku \citetitle{Zuckerman2014} Ethan Zuckerman vysvětluje, proč jsou reklamy „prvotním hříchem“ Webu. Uživatelé se naučili, že služby na Webu jsou zadarmo -- respektive, že za ně platí svou pozorností, kterou musí věnovat otravným reklamám. Webové služby tak soupeří o pozornost uživatelů, kteří akceptují stále invazivnější sběr osobních dat kvůli lepšímu marketingovému zaměření \autocite{Zuckerman2014}. Přesto příjmy z on-line reklamy stále klesají \autocite{WSJ:Ads}.
+
+Nelson neplánoval, že by cokoliv bylo v Xanadu zadarmo. Uživatelé měli platit  poskytovateli za používání systému i autorům za přístup k jejich dokumentům (\pnoref{sec:transcopyright}), a to i extrémně malé částky za každý přenesený byte (mikroplatby). Web nemá žádný integrovaný systém placení za obsah. Přístup ke zpoplatněnému obsahu si řeší každý vydavatel zvlášť, případně individuální tvůrci spoléhají na dobrovolné příspěvky svých fanoušků.\footnote{Například skrze populární službu \href{https://www.patreon.com/}{Patreon}.}
+
+Určitý posun by mohly přinést vznikající webové standardy pro placení prostřednictvím webového prohlížeče \autocite{W3C:PaymentReq}. Provozovatelé tak mohou snadněji integrovat různé metody plateb proti jednotnému rozhraní. Pro uživatele je placení jednodušší, nevyžaduje opakované zadávání údajů z platební karty nebo registraci do různých služeb pro elektronické platby (např. PayPal), ačkoli ty mohou být podporované jako jedna z platebních metod. Konvenční platební metody mají jisté nevýhody, zejména při placení malých částek. 
+Zprostředkovatelé plateb si účtují relativně vysoké marže za transakci, takže se nevyplatí pro mikroplatby. Zároveň jsou informace o nákupech zpřístupněné třetím stranám, což umožňuje bance, nebo jinému zprostředkovateli, sledovat, jaký obsah uživatel nakupuje.
+
+
+Oba tyto problémy částečně řeší kryptografické měny, jako například Bitcoin. Ty fungují bez centrální autority a umožňují placení velmi malých částek s minimální marží. Všechny transakce jsou veřejně viditelné, protože jsou uložené v blockchainu. Uživatelé však mohou mít neomezené množství samostatných identit pro placení (tzv. peněženky) a existují způsoby anonymizace plateb, například přes „promíchání“ plateb více uživatelů \autocite{Herrera-Joancomarti2015}.
+
+Prohlížeč \enterm{Brave} se pokouší zavést koncept dobrovolných mikroplateb za obsah na webu. Prohlížeč automaticky blokuje reklamy, čímž omezuje příjmy majitelů webových stránek. Uživatelé mohou každý měsíc platit fixní částku, která se poměrně rozdělí mezi weby, které nejčastěji navštěvují \autocite{BravePay}. Platby chodí přes Bitcoin do peněženky příslušného webu, což umožňuje sbírat odměny i pro vydavatele, kteří se do systému nepřihlásili. Systém plateb je nastavený tak, aby z transakcí nebylo patrné, jaké stránky uživatelé navštěvují, ale zároveň si uživatelé díky blockchainu mohou ověřit, že byl jejich příspěvek skutečně vyplacen (Brave si bere provizi pět procent). Zakladatel projektu Brendan Eich\footnote{Také původní autor jazyka JavaScript a spoluzakladatel projektu Mozilla.} věří, že Brave má šanci fundamentálně změnit obchodní model Webu \autocite{IEEE:Brave}.
+
+\label{p:xw:microt:blockch}
+Blockchain nabízí i jiná využití související s odměnami pro autory, například může sloužit k registraci digitálního díla. Autor může uložit do blockchainu hash díla, čímž prokáže jeho autorství v určitém čase. Následně pak mohou být v blockchainu zaznamenány nákupy a převody licencí \autocite{COALA}.
+
+Výhody takového decentralizovaného registru jsou patrné zejména v kontextu modelu distribuovaného, permanentního Webu. Dříve zmíněný systém Filecoin zpoplatňuje uložení a přenos souborů, nicméně neřeší autorství souborů.
+Mohl by však existovat registr souborů uložený v blockchainu, který by propojoval unikátní hash souboru s identitou autora. Takový registr se snaží vytvořit projekt \enterm{ascribe} \autocite{McConaghy2015}. Na základě ověření autorství z registru by bylo možné zasílat autorům automaticky příspěvky podobně, jako to dělá prohlížeč Brave. Registr by také mohl sloužit k bezpečnému nákupu obsahu \autocite{Kahle2015}.
+Pokud si uživatel zakoupí soubor, bude tato informace permanentně zaznamenána v blockchainu. Ostatní klienti distribuovaného souborového systému uživateli soubor poskytnou proti provedené platbě, případně mu zprostředkují dešifrovací klíč. Autor nemusí do procesu vůbec zasahovat, ani zajišťovat hosting souboru.
+
+Takový model ale vyžaduje určitou důvěru mezi klienty a dává prostor ke zneužití.
+Kupříkladu si plagiátor zaregistruje dílo, které nevytvořil (třeba mírně změněný soubor) a může si nárokovat odměnu. Oproti Xanadu však v decentralizované síti neexistuje autorita, která by mohla zasáhnout. Systém by byl pravděpodobně spolehlivější, pokud by registrace díla byla podmíněná ověřením identity autora.
+
+Koncept mikroplateb skrze kryptografickou měnu zapadá do Nelsonovy demonstrace zpoplatněného obsahu v prototypu XanaViewer (viz obr. \ref{pic:xanaviewer3} \pnoref[na]{pic:xanaviewer3}). Nelsonův návrh předpokládá, že si uživatel zakoupí obsah přímo na konkrétním webovém serveru, kde je obsah hostovaný. Poskytovatel obsahu však může zaniknout a uživatelé přijdou o možnost si odkazovaný obsah zakoupit. Kombinace mikroplateb s konceptem Permanentního webu by mohla tento problém vyřešit.
+
+\section{Shrnutí}
+
+Triviální návrh Webu se ukázal být i jeho silnou stránkou, protože umožnil rychlý rozvoj a adaptaci této technologie. I přes ohromný posun webových technologií Web, jako hypertextové médium, trpí stejnými nedostatky, jaké mu byly vyčítány před dvaceti lety. V této kapitole byly konfrontovány problematické charakteristiky Webu proti návrhu Xanadu a představeny možná řešení na základě aktuálních technologií a webových standardů.
+
+Web sám o sobě negarantuje permanentní dostupnost obsahu a jednotlivých verzí dokumentů. Existující řešení, zejména webové archivy, mají svá omezení. Alternativa popsaná v této kapitole jsou \enterm{peer-to-peer} systémy, které dokážou zajistit dostupnost a verzování dokumentů bez závislosti na původním zdroji.
+Jako příklad byl popsán distribuovaný systém IPFS s kryptografickou měnou Filecoin, který má ambice vytvořit infrastrukturu pro tzv. permanentní Web.
+
+Webové technologie nabízí pouze omezené prostředky adresace obsahu uvnitř dokumentů. Jako možné řešení byl představen webový standard pro anotace, jenž umožňuje adresaci obsahu v dokumentu odolnou vůči změnám dokumentů. Rozšířením tohoto standardu by bylo možné realizovat Nelsonův koncept plovoucích odkazů s viditelnou vazbou mezi dokumenty.
+
+Z dalších nedostatků Webu byla zmíněna absence obousměrných odkazů. Stávající technologie, jako \enterm{Webmention} nebo \enterm{Trackback}, jsou závislé na vůli majitelů webových stránek aby rozhodli, které zpětné odkazy chtějí publikovat. To je v rozporu s myšlenkami Xanadu. Naznačená řešení spočívají v uložení zpětných odkazů na serveru třetí strany, či, v případě distribuovaného systému, jejich sdílení skrze distribuovanou databázi.
+
+Ačkoli Web umožňuje omezenou transkluzi obsahu, v praxi je její používání limitováno jeho architekturou a absencí univerzálních pravidel pro opakované použití obsahu. Zároveň není možné snadno a efektivně transkludovat text. Funkční řešení transkluze na Webu představil přímo Nelson v projektu XanaViewer, který by mohl být zajímavý zejména v kombinaci s permanentním Webem.
+
+Poslední diskutovaná oblast se týká absence udržitelného, univerzálního obchodního modelu na Webu. Uživatelé jsou zvyklí, že obsah na Webu je dostupný zdarma za cenu všudypřítomných reklam a sběru osobních dat, přitom výnos z reklam nepokrývá náklady vydavatelů obsahu.
+Možná východiska zahrnují integrace plateb v prohlížeči a decentralizované kryptografické měny, které mohou sloužit k zavedení mikroplateb za obsah.
+Distribuované databáze postavené na blockchainu mohou zároveň sloužit jako autoritativní zdroj pro licencování obsahu a zprostředkování honorářů autorům.
+
+\subsection{Syntéza řešení}
+
+Kombinace představených technologií by mohla Web přiblížit vizi Xanadu.
+Konzervativnější řešení je využít standard webových anotací pro vytváření viditelných vazeb, transkluzí a obousměrných odkazů mezi dokumenty, za cenu nestálosti a rizika změny odkazovaných dokumentů. To usnadňuje i integraci plateb za obsah, protože dokumenty jsou uložené u konkrétních poskytovatelů. 
+Toto řešení zachovává stejné cíle Xanadu popsané \pnoref[na]{p:xana:goals}, jaké splňuje Web. Navíc jsou splněny požadavky g) (viditelné a obousměrné odkazy) a i) (mechanismus provizí za dokument nebo jeho část).
+% Určitým kompromisem by byla úzká integrace takového systému s archivačními službami, což by mělo zajistit stabilitu odkazovaného obsahu, ale bez možnosti jeho zpoplatnění.
+
+Radikálnější řešení staví na nové architektuře permanentního, distribuovaného Webu. Ten umožňuje uchovat veškerý obsah včetně všech revizí, které zůstanou dlouhodobě dostupné. Díky tomu lze snadno transkludovat i adresovat konkrétní obsah v dokumentech. Symetrie klientů v distribuované síti umožňuje snadnou publikaci vlastních revizí a anotací cizích dokumentů. Není k tomu nutné spravovat server, nebo spoléhat na konkrétní centralizované služby. Díky integraci mikroplateb s distribuovaným úložištěm dat funguje celý systém jako tržiště pro hostování dokumentů.
+
+V praxi by takový systém bylo možné realizovat skrze Nelsonův XanaViewer (nebo podobný software) upravený pro distribuovaný systém, jako je IPFS.
+Rozšíření Nelsonovy specifikace formátů Xanadoc a Xanalink o koncepty ve standardu webových anotací by mohlo umožnit transkluzi obsahu napříč textovými i multimediálními formáty. Pro Nelsonem navržené formáty však v současnosti neexistuje editor, který by je umožňoval vytvářet. To značně omezuje využití programu XanaViewer. Dalším nedostatkem tohoto plánu je absence technologií pro platbu za obsah. To by buď vyžadovalo rozšíření protokolů pro distribuci obsahu (např. zmíněné IPFS či Filecoin), nebo integraci samostatného systému pro zpoplatněný obsah; mechanika takového systému je naznačená \pnoref[na]{p:xw:microt:blockch}. Největší problém představuje náhrada webové architektury klient~/ server za distribuovanou síť se symetrickými klienty.
+Ta vyžaduje odlišný přístup k implementaci webových aplikací a mohla by být překažkou v adopci. Na druhou stranu je možné zachovat řadu existujících webových technologií (jako HTML, CSS, JavaScript) a podporu takové sítě je možné implementovat v konvenčním webovém prohlížeči formou klientské aplikace. 
+Rozšíření distribuovaných sítí pomůže podpora ze strany poskytovatelů hostingových služeb, jako je uvedený příklad portálu Neocities.
+
+Navržený distribuovaný systém v některých ohledech předčí Nelsonovu vizi globálního Xanadu. Nevyžaduje centrální autoritu, licencované poskytovatele, smluvní vztahy mezi uživateli a poplatky za publikaci (uživatel si může obsah publikovat na svém serveru). Alespoň teoreticky je odolnější vůči cenzuře, manipulaci s daty i výpadkům sítě.
+
+Vyhodnocení navržené kombinace technologií (na základě projektů IPFS a Filecoin) proti seznamu požadavků na systémy Xanadu \pnoref[ze]{p:xana:goals} splňuje většinu bodů s výjimkou i) (mechanismus provizí) a p) (bezpečnost transakce).
+% Jak je popsáno \pnoref[na]{p:xw:microt:blockch}, mechanismus provizí by vyžadoval dodatečné funkce pro správu autorských práv. Druhý ze zmíněných bodů nelze splnit při použití technologie blockchain, protože transakce je vždy veřejná, účastníci transakce si však mohou chránit svou anonymitu. Splnění ostatních bodů je dáno převážně povahou distribuované sítě. Identita uživatelů i serverů je garantovaná pomocí veřejného klíče \autocite[3.1]{IPFS}, ačkoli uživatelé mohou mít libovolné množství identit. Dokumenty jsou jednoznačně identifikované svým obsahem. Uživatelé si mohou připlatit za větší množství kopií svých dat na síti \autocite{}.
+Vyhodnoceno po jednotlivých bodech:
+
+% \begin{description}[%
+%   before={\setcounter{descriptcount}{0}},%
+%   ,style=nextline%
+%   ,leftmargin=13pt%
+%   ,font=\bfseries\stepcounter{descriptcount}\thedescriptcount)\ ]
+
+\newcommand\litem[1]{%
+\begin{samepage}%
+\item{\bfseries#1\mbox{}\\}%
+\end{samepage}\pagebreak[2]\ignorespaces%
+}
+
+\begin{enumerate}[a)]
+
+\litem{Každý Xanadu server je unikátně a bezpečně identifikovaný.}
+Každý server (resp. uzel) na síti je unikátně identifikovaný veřejným klíčem. Server prokazuje svou identitu pomocí privátního klíče \autocite[3.1]{IPFS}.
+
+\litem{Každý Xanadu server může fungovat samostatně nebo na síti.}
+Vyplývá z povahy distribuované sítě. Server může fungovat na lokálním počítači bez připojení, na lokální síti nebo přes Internet.
+
+\litem{Každý uživatel je unikátně a bezpečně identifikovaný.}
+Uživatel na síti je identifikovaný stejně jako server, viz bod a).
+
+% % d
+\litem{Každý uživatel může hledat, získávat, vytvářet a ukládat dokumenty.}
+Dokumenty je možné získat na základě jejich hashe. Uživatel si může uložit dokument na lokálním serveru, případně si zaplatit jeho uložení v síti přes Filecoin.
+
+\litem{Každý dokument se může skládat z různých částí libovolných typů dat.}
+Do HTML dokumentů lze vložit různé datové formáty pomocí schématu „data“ \autocite{RFC2397}, efektivnější alternativa je však využití transkluze.
+% % Soubor pod jedním hashem na IPFS může tvořit adresář s různými typy souborů (každý soubor má také svůj individuální hash).
+
+\litem{Každý dokument může obsahovat odkazy libovolného typu, včetně transkluze jiného dokumentu v systému, ke kterému má vlastník dokumentu přístup.}
+Transkluzi lze použít ve formátech HTML a Xanadoc. Omezení přístupu může být řešeno šifrováním obsahu nebo ověřením identity uživatele.
+
+\litem{Odkazy jsou viditelné a mohou být následovány ze všech konců.}
+Odkazy mezi dokumenty jsou uložené jako samostatné soubory (Xanalinks nebo webové anotace). Prohlížeč získá informace o příchozích odkazech skrze distribuovanou hashovací tabulku (\pnoref{p:xw:bidir:dht}). 
+
+% %h
+\litem{Akt publikace dokumentu dává ostatním explicitní právo dokument odkazovat.}
+Uživatel publikuje dokument tak, že zveřejní jeho hash a umožní ostatním si jej stáhnout \autocite[3.5.4]{IPFS}.
+
+% %i
+\litem{Každý dokument může zahrnovat mechanismus provizí \textelp{} za přístup k jakékoliv části dokumentu, včetně transkluze \textelp{}.}
+Vyžaduje dodatečné mechanismy pro správu autorských práv, které umožní obsah zpoplatnit (\pnoref{p:xw:microt:blockch}).
+
+% %j
+\litem{Každý dokument je unikátně a bezpečně identifikován.}
+Dokument je identifikovaný kryptografickým hashem svého obsahu.
+% Autorství verzí dokumentu může být ověřené privátním klíčem uživatele v IPNS \autocite[3.7.1]{IPFS}.
+
+% %k
+\litem{Každý dokument je chráněný před neoprávněným přístupem.}
+Neveřejný dokument může být zašifrovaný, případně poskytnutý ke stažení pouze serverům se známou identitou.
+
+% %l
+\litem{Každý dokument může být rychle vyhledán, uložen a získán, aniž by uživatel věděl, kde je dokument fyzicky uložený.}
+Viz bod d). Uživatel může zaplatit za redundantní uložení dokumentu na síti přes Filecoin.
+
+% %m
+\litem{Každý dokument je automaticky přesunutý na fyzické úložiště odpovídající frekvenci přístupu z libovolného místa.}
+Server, který získá určitý soubor jej začne nabízet dalším serverům. Filecoin dále optimalizuje distribuci dat na síti, protože odměňuje servery za zprostředkování souborů (tzv. \enterm{Retrieval Miners}, \cite[viz][27]{Filecoin2017}).
+
+% %n
+\litem{Každý dokument je automaticky uložen v redundantních kopiích pro zajištění dostupnosti v případě katastrofy.}
+V případě protokolu Filecoin odpovídá za redundanci uložení dat uživatel: čím více zaplatí, tím vícekrát bude soubor uložený v redundantních kopiích \autocite[18]{Filecoin2017}. Síť má zároveň opravné mechanismy, které penalizují nespolehlivé poskytovatele úložiště \autocite[20]{Filecoin2017}.
+
+% %o
+\litem{Každý poskytovatel Xanadu může svým uživatelům účtovat poplatky~\textelp{}.}
+Vyplývá z povahy sítě Filecoin, kde uživatel může platit za uložení a přístup k datům.
+
+% %p
+\litem{Každá transakce je bezpečná a dostupná pouze účastníkům dané transakce.}
+Tento bod není možné zcela splnit s technologií blockchain, protože každá transakce je veřejná. Identita účastníků transakce je však anonymní a je možné podniknout určitá opatření, aby identita na síti byla obtížně spojitelná s reálnou osobou.
+
+% %q
+\litem{Protokol Xanadu pro komunikaci mezi serverem a klientem je otevřeně publikovaný standard. \textelp{}}
+Všechny uvedené technologie jsou otevřené standardy a open-source projekty.
+
+% \end{description}
+\end{enumerate}
+
+Decentralizace a absence autorit má však i stinné stránky. Distribuovaná technologie poskytuje široké možnosti pro šíření ilegálního obsahu. Otevřená povaha hypertextu v Xanadu v kombinaci s nízkým prahem pro publikaci nabízí prostor pro šikanu uživatelů. Takové problémy by pravděpodobně motivovaly uživatele k implementaci zajímavých technických řešení.\footnote{Obdobně jako hromadná šikana uživatelů sociální sítě Twitter vedla ke vzniku aplikací pro automatické blokování uživatelů, například \href{https://blocktogether.org/}{BlockTogether.org}.}
+Nová technologie může podobné problémy reflektovat ve svém návrhu. V případě distribuovaného Webu je současný vývoj ve fázi, kdy tvůrci testují, zda se jedná o funkční koncept. Nyní je vhodná doba začít uvažovat jaké nové společenské výzvy distribuovaný Web přinese. To může být předmětem dalšího zkoumání.

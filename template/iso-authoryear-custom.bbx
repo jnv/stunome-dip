@@ -1,0 +1,106 @@
+\ProvidesFile{iso-authoryear-custom.bbx}
+% Customized bibliography style to fix
+% https://github.com/michal-h21/biblatex-iso690/issues/58
+\RequirePackage {xpatch}
+
+\RequireBibliographyStyle{iso}
+\ExecuteBibliographyOptions{%
+  sorting=nyt
+}
+
+\def\printextrayear{%
+  \ifentrytype{patent}
+    {}
+    {\printfield{year}\printfield{extrayear}}%
+}
+
+\DeclareBibliographyAlias{movie}{misc}
+
+\NewBibliographyString{movie, bydirector, bydirectors, byproducer, byproducers}
+\DefineBibliographyStrings{czech}{%
+  movie = {film},
+  bydirector = {Režie},
+  bydirectors = {Režie},
+  byproducer = {Produkce},
+  byproducers = {Produkce},
+}
+
+% FIXME hack for english entry
+\DefineBibliographyStrings{english}{%
+  % bydirector = {Directed by},
+  % bydirectors = {Directed by},
+  % byproducer = {Produced by},
+  % byproducers = {Produced by},
+  movie = {film},
+  bydirector = {Režie},
+  bydirectors = {Režie},
+  byproducer = {Produkce},
+  byproducers = {Produkce},
+}
+
+% \DeclareNameAlias{editor}{first-last}
+% \DeclareNameAlias{editora}{first-last}
+
+% FIXME: per-type alias seems broken
+% \DeclareNameAlias[movie]{byeditor}{given-family}
+\DeclareNameAlias{byeditor}{given-family}
+\DeclareNameAlias{bytranslator}{given-family}
+
+\DeclareLabelname[movie]{
+  \field{title}
+}
+
+% FIXME: this doesn't work
+\DeclareFieldFormat[movie]{howpublished}{%
+  \iffieldundef{howpublished}
+    {\mkbibbrackets{\mainlstring{movie}}}
+    {\mkbibbrackets{#1}}
+}
+
+% overwrite names:primary to print year right after
+% 1) author
+% 2) editor
+% 3) label/title
+% need to handle not to print editor twice (primary
+% and subsidiary names)
+\renewbibmacro*{names:primary}{%
+  \ifboolexpr{
+    test \ifuseauthor
+    and
+    not test {\ifnameundef{author}}
+  }
+    {\usebibmacro{author}}%
+    {\usebibmacro{editor}}%
+  \setunit{\addspace}\printfield{nameaddon}%
+  \ifthenelse{\not \ifentrytype{movie}}%
+    {\setunit{\addcomma\space}\printextrayear}%
+    {}%
+}
+
+% Append year to title for movie type
+% FIXME: this could be probably generalized
+%        for items with empty author
+\xapptobibmacro{multi:titles}{%
+  \ifentrytype{movie}%
+    { \iffieldequalstr{endyear}{}%
+        {\printdate\mbox{\addnbspace}}%
+        {\printdate}%
+    }{}%
+}{}{}
+
+% remove second appearance of year in a reference
+\renewbibmacro*{date}{%
+}
+
+
+\InitializeBibliographyStyle{\global\undef\bbx@lasthash}
+
+\newbool{bbx@inset}
+\DeclareBibliographyDriver{set}{%
+  \booltrue{bbx@inset}%
+  \entryset{}{}%
+  \newunit\newblock
+  \usebibmacro{setpageref}%
+  \finentry}
+
+\endinput

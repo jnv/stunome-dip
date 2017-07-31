@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+
+cd "$(dirname "$0")/.."
+
+rm -f -- *.aux *.bbl *.blg *.bcf *.fdb_latexmk *.fls \
+         *.log *.out *.run.xml *.toc *.xdv \
+         *.4ct *.4tc *.lof *.tmp *.xref \
+         creationdate.timestamp pdfa.xmpi

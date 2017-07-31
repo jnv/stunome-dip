@@ -1,0 +1,189 @@
+% options:
+% thesis=B bachelor's thesis
+% thesis=M master's thesis
+% czech thesis in Czech language
+% english thesis in English language
+
+% arara: xelatex: { shell: yes }
+% arara: biber
+% arara: xelatex: { shell: yes }
+% arara: xelatex: { shell: yes }
+\documentclass[thesis=M,czech]{template/FITthesisXE}
+
+\addbibresource{mendeley.bib}
+\addbibresource{crossrefs.bib}
+
+\usepackage{import}
+\usepackage{booktabs}
+\usepackage{dirtree}
+\usepackage{ragged2e}
+\usepackage[shortlabels]{enumitem}
+\usepackage{float}
+\usepackage{caption} % Fix hyperref links to captions
+\floatstyle{plaintop}
+\restylefloat{table}
+
+\setcounter{tocdepth}{2}
+
+\hyphenation{trans-klu-ze}
+\hyphenation{trans-klu-zi}
+\hyphenation{trans-klu-do-va-ný}
+
+% References are in English by default
+% https://tex.stackexchange.com/a/279302/135332
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldset=langid, fieldvalue={english}]
+    }
+  }
+}
+
+% https://tex.stackexchange.com/questions/30029/enumerated-description-list
+\newcounter{descriptcount}
+\renewcommand*\thedescriptcount{\alph{descriptcount}}
+
+% from https://www.herout.net/blog/2017/03/pomalu-uz-pojdme-psat/
+\usepackage{xcolor}
+\newcommand{\todo}[1]{
+    %\textcolor{red}{\textbf{[[#1]]}}
+}
+
+\usepackage{blindtext}
+\newcommand{\blind}[1][1]{
+
+}
+
+\newcommand{\importsvg}[1]{
+    \def\svgwidth{\columnwidth}
+    \import{media/svg/}{#1.pdf_tex}
+}
+
+% usage: \imagefigure{filename}{description}
+\newcommand{\imagefigurefull}[3]{
+    \begin{figure}[htbp]
+    \centering
+        \includegraphics[width=#3\linewidth]{media/#1}
+        \caption{#2 \label{pic:#1}}
+    \end{figure}
+}
+
+% usage: \imagefigurelarge[short desc]{filename}{description}
+\newcommand{\imagefigurelarge}[3][]{
+  \begin{figure}[htbp]
+    \centering
+      \includegraphics[width=.99\linewidth]{media/#2}
+      \caption[#1]{#3 \label{pic:#2}}
+  \end{figure}
+}
+
+\newcommand{\imagefigure}[2]{
+    \imagefigurefull{#1}{#2}{.6}
+}
+
+\newcommand{\screenshotfigure}[2]{
+    \imagefigurefull{#1}{#2}{.4}
+}
+
+\newcommand{\idkijustwanttwotofitonapagefigure}[2]{
+    \imagefigurefull{#1}{#2}{.83}
+}
+
+\newcommand{\svgfigure}[2]{
+    \begin{figure}[htbp]
+    \centering
+        \importsvg{#1}
+        \caption{#2 \label{pic:#1}}
+    \end{figure}
+}
+
+\newcommand{\eng}[1]{%
+  \foreignlanguage{english}{#1}%
+}
+
+\newcommand{\enterm}[1]{%
+  \eng{\emph{#1}}%
+}
+
+\newcommand{\pnoref}[2][viz]{%
+  #1 str.~\pageref{#2}%
+}
+
+% \MakeAutoQuote{„}{“}
+% \MakeAutoQuote*{‚}{‘}
+\renewcommand{\mkbegdispquote}[2]{\strut\llap{,,}\ignorespaces}
+\renewcommand{\mkenddispquote}[2]{\unskip#1``\sourceatright{#2}}
+\SetCiteCommand{\autocite}
+\renewcommand{\mkcitation}[1]{ #1}
+
+\newenvironment{quoted}[1]{%
+  \renewcommand{\mkcitation}[1]{#1}
+  \begin{displayquote}[{#1}]
+}%
+{%
+  \end{displayquote}
+}
+
+
+% Redeclare \citetitle* to include subtitle
+% https://groups.google.com/d/msg/comp.text.tex/yraHKtHQidA/yJNoVqc2KVkJ
+\DeclareCiteCommand*{\citetitle}{%
+  \boolfalse{citetracker}%
+  \boolfalse{pagetracker}%
+  \usebibmacro{prenote}}
+  {\indexfield{indextitle}%
+    \printtext[citetitle]{%
+    \printfield[noformat]{title}%
+    \iffieldundef{subtitle}{}{\subtitlepunct}%
+      \printfield[noformat]{subtitle}}}%
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+% Redefine formatting – some stuff was with quotes, some in italic
+\DeclareFieldFormat*{citetitle}{\textit{#1}}
+
+% Respect name prefixes in citations in document
+% https://tex.stackexchange.com/questions/21361/how-can-i-put-a-names-prefix-in-front-in-citations-but-not-in-the-bibliograph
+\makeatletter
+\AtBeginDocument{\toggletrue{blx@useprefix}}
+\AtBeginBibliography{\togglefalse{blx@useprefix}}
+\makeatother
+
+%\makeglossaries
+%\input{"src/glossary.tex"}
+%\glsaddall	% add even unused acronyms
+
+\imprint{\input{"src/01-imprint.tex"}}
+\acknowledgements{\input{"src/01-acknowledgements.tex"}}
+\abstractEN{\input{"src/02-abstract_en.tex"}}
+\abstractCS{\input{"src/02-abstract_cs.tex"}}
+
+
+\input{"src/03-meta.tex"}
+\begin{document}
+
+% \mainmatter
+
+\begin{introduction}
+    \input{"src/10-intro.tex"}
+\end{introduction}
+
+\input{"src/11-ch1.tex"}
+\input{"src/12-ch2.tex"}
+\input{"src/13-ch3.tex"}
+
+\backmatter
+
+\begin{conclusion}
+    \input{"src/14-conclusion.tex"}
+\end{conclusion}
+
+% TODO missing eds. in Bush1967
+\setlength{\emergencystretch}{2em}
+\printbibliography[]
+\appendix
+
+% \chapter{List of Acronyms}
+% \printglossary[type=\acronymtype,style=acronyms]
+
+\end{document}

@@ -1,0 +1,39 @@
+Cílem mé práce bylo popsat vlastnosti systému Xanadu a kriticky zhodnotit možnosti, přínosy a limitace jejich přenesení do kontextu současného Webu. V práci jsem se snažil zodpovědět dvě otázky: jak se liší Nelsonem navržené vlastnosti Xanadu od vlastností současného Webu a jakým způsobem lze o tyto vlastnosti současný Web obohatit.
+Nejprve byly představeny některé historické hypertextové systémy, které poskytly kontext pro analýzu Nelsonova Xanadu. Z této analýzy vzešly konkrétní vlastnosti, které byly přeneseny do prostředí Webu s dílčími návrhy na jejich implementaci. V závěru byly syntetizované dva návrhy, jehož silnější varianta by mohla vést k realizaci většiny vlastností Xanadu v prostředí Webu.
+
+V první kapitole jsem představil několik hypertextových systémů společně s motivacemi jejich tvůrců. Společná jim byla snaha osvobodit obsah dokumentů z fyzické formy. Jejich pojetí hypertextu bylo mnohem sofistikovanější, než jak jej představuje současný Web. Rozvoj hypertextových systémů byl také úzce spojen s evolucí počítačů a operačních systémů. Zatímco první systémy měly problém prosadit funkci počítače jako interaktivního média, novější systémy pro změnu narážely na fragmentaci aplikací a souborových formátů.
+Web přinesl jednotný protokol a formát, v porovnání s ostatními hypertextovými systémy se však v návrhu dopustil řady kompromisů. Neumožnil užší propojení mezi dokumenty a webové prohlížeče postupem času přišly o možnost univerzální publikace a anotace obsahu.
+
+Ve druhé kapitole jsem popsal projekt Xanadu z hlediska evoluce Nelsonovy vize a z hlediska realizovaných implementací. Na základě toho jsem určil dílčí vlastnosti, které měl systém Xanadu nabízet: permanenci dokumentů, transkluzi obsahu, plovoucí odkazy, viditelné vazby mezi dokumenty a provizní systém podporující transkluzi obsahu.
+Většina vlastností Xanadu pramení z raných návrhů, které Nelson dále rozvíjel podle aktuálních schopností počítačů. Prvotní návrhy popisovaly Xanadu jako operační systém, pozdější jako samostatnou aplikaci a s nástupem Webu bylo Xanadu revidováno jako webová aplikace. Tomu odpovídají i zmíněné prototypy, které demonstrují pouze některé z popsaných vlastností Xanadu.
+
+V poslední kapitole jsem porovnal zamýšlené vlastnosti projektu Xanadu s možnostmi Webu. Pro dílčí nedostatky Webu jsem představil aktuální technologie, které by mohly přiblížit Web realizaci Xanadu. Konkrétně byla popsána jedna z implementací distribuovaného, permanentního Webu, která řeší perzistenci dokumentů a usnadnila by implementaci dalších vlastností Xanadu. Dále jsem představil možnosti precizní adresace skrze standard webových anotací, implementace obousměrných odkazů, transkluzi textového obsahu a možnosti mikroplateb za obsah prostřednictvím kryptografických měn s technologií blockchainu. V závěru kapitoly jsem uvedl dvě varianty syntézy diskutovaných řešení, jejíž silnější varianta by mohla vést k decentralizované verzi Xanadu. Jako součást řešení jsem zohlednil Nelsonův aktuální prototyp, XanaViewer.
+
+Finální kapitola práce je do velké míry spekulativní. Popsal jsem zde nové technologie, které jsou v současnosti spíše na okraji zájmu a je možné, že se řada z nich neprosadí. V první kapitole koneckonců zmíňuji celou řadu hypertextových systémů, které skýtaly velký potenciál, časem ale zastaraly a zanikly. Největší překážkou pravděpodobně bude náhrada současného modelu Webu klient~/ server za distribuovanou síť, která přinese odlišný přístup k implementaci webových aplikací.
+% Mnohem jednodušší Web však obstál díky přizpůsobivosti. Xanadu je naopak navržené jako velice robustní a funkčně úplný systém -- Nelson na něm pracoval přes půl století. Dílčí technologie a standardy jsou však 
+
+V práci jsem představil dílčí technologie, které umožňují Xanadu realizovat. Má však skutečně smysl pokoušet se tento systém implementovat? Není to jen touha naplnit neuskutečněný sen?
+% Nelson pracuje na Xanadu přes půl století, prakticky je nedílnou součástí jeho existence.
+Nelson v návrhu Xanadu předcházel problémům, které sužují současný Web, jako je nestabilita obsahu nebo nefunkční obchodní model.
+Tyto problémy vadí především konzumaci obsahu na Webu.
+Systém Xanadu měl umožnit obsah stejně snadno konzumovat, jako jej syntetizovat, porovnávat a rozvíjet. Stejný cíl sdílela řada ostatních hypertextových systémů a byl to i Bushův záměr s Memexem.
+Domnívám se, že to je i hlavní cíl, o který má smysl usilovat a který by Xanadu mělo na Web přinést. Lze sice namítnout, že Web má řadu možností a služeb pro publikaci obsahu (například blogy nebo YouTube), ale ty z velké části slouží k prezentaci uzavřených dokumentů.
+Základní implementace Xanadu na Webu by se měla zaměřit na vytváření viditelných spojení mezi existujícími dokumenty. To umožní osvobodit informace uvnitř dokumentů a vytvářet nové asociace, na které původní autoři nepomysleli.
+S takovou funkcí se Web přiblíží nejen Nelsonově vizi, ale konečně se vyrovná Memexu.
+
+% hypertext jako nástroj pro tvorbu, pro zaznamenání komplexních, nelineárních proudů myšlenek v jejich plné šíři. Systém Xanadu měl umožňovat 
+% Web však hypertext zredukoval na jednoduchý prostředek
+
+% Protože uživatelé si na Webu zvykli, že obsah je zadarmo, vydavatelé se snažili vytěžit hodnotu z pozornosti návštěvníků. To vedlo k vzestupu reklamy, jako dominantního obchodního modelu. Efektivně 
+% Web se prosadil jako efektivní médium pro konzumaci informací. Xanadu by mohl být nástroj pro jejich syntézu.
+
+Problematika implementace vlastností Xanadu zahrnuje řadu dalších teoretických i praktických oblastí pro výzkum.
+Jednou z nich je návrh uživatelského rozhraní pro propojování a transkluzi obsahu. Většina Nelsonových prototypů demonstruje pouze možnosti prohlížení hypertextových dokumentů.
+Další oblast se týká rozvoje stávajících webových standardů takovým způsobem, aby byly podpořené vlastnosti Xanadu. Nabízí se rozšíření modelu webových anotací na obecný systém plovoucích odkazů nebo integrace mikroplateb do webových prohlížečů.
+Širokou oblastí výzkumu jsou distribuované sítě a permanentní Web. Ty přináší nové technické i společenské výzvy. Mezi možná témata patří podpora mikroplateb za obsah nebo ochrana soukromí uživatelů.
+
+V práci se věnuji specifické koncepci hypertextu jako „nástroje pro myšlení,“ tj. hypertext má sloužit k organizaci informací a k zachycení myšlenek.
+Tento přístup má kořeny v konceptu Memexu Vannevara Bushe, na který navazuje i Nelson. Touto optikou má hypertext umožnit čtenářům hlouběji pracovat s textem a s masou propojených informací.
+Takový utilitární pohled na hypertext je do jisté míry protiváhou ergodického pojetí hypertextu, které se většinou zaměřuje na požitek čtenáře při interakci s individuálními díly. Nelsonovo Xanadu rozmazává hranice mezi čtenářem a autorem, čímž definuje nový rámec pro interakci s textem. Představuje proto zajímavý příspěvek do diskurzu o kybertextu.
+
+Já si z této práce odnáším, že myšlenky Xanadu lze a má smysl přenést na Web. V mé práci jsou popsané způsoby, jak toho docílit a rád bych se v budoucnu věnoval jejich implementaci. Zároveň práce poskytuje přehled Nelsonových návrhů a prototypů, který nabízí zajímavou historickou perspektivu a může být užitečný pro další bádání na poli hypertextových systémů.
