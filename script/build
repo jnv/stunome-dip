@@ -3,6 +3,5 @@ set -eu
 
 cd "$(dirname "$0")/.."
 
-cp -f "$BIB_LOCATION" mendeley.bib && \
 arara main && \
 mv main.pdf output/thesis.pdf
